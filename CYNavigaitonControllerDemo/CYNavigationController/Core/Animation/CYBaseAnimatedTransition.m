@@ -10,8 +10,6 @@
 
 @interface CYBaseAnimatedTransition ()
 
-@property (nonatomic, weak) id <UIViewControllerContextTransitioning> transitionContext;
-
 @end
 
 @implementation CYBaseAnimatedTransition
@@ -21,7 +19,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _transitionDuration = 0.35f;
+        _transitionDuration = 0.6f;
     }
     return self;
 }
@@ -39,8 +37,11 @@
 #pragma mark - pravite
 
 - (UITabBar *)fetchTabBar{
+
     UIViewController *rootVc = [UIApplication sharedApplication].keyWindow.rootViewController;
+
     UITabBarController *tabBarVc = [self fetchTabBarVcFromRootViewController:rootVc];
+
     if (tabBarVc) {
         return tabBarVc.tabBar;
     }
@@ -48,10 +49,15 @@
 }
 
 - (UITabBarController *)fetchTabBarVcFromRootViewController:(UIViewController *)rootVc{
-    if ([rootVc isKindOfClass:[UITabBarController class]]) {
+
+    if (rootVc == nil) {
+        
+        return nil;
+    } else if ([rootVc isKindOfClass:[UITabBarController class]]) {
+
         return (UITabBarController *)rootVc;
-    }
-    else{
+    } else{
+
         return [self fetchTabBarVcFromRootViewController:rootVc.childViewControllers.firstObject];
     }
 }
@@ -59,16 +65,23 @@
 #pragma mark - UIViewControllerAnimatedTransitioning
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
+
     return _transitionDuration;
-//    return UINavigationControllerHideShowBarDuration;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+
     _fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     _toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     _containerView = [transitionContext containerView];
     _transitionContext = transitionContext;
-    
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        if (self.delegate && [self.delegate respondsToSelector:@selector(CYAnimatedTransitionStartAnimationWithDuration:)]) {
+            [self.delegate CYAnimatedTransitionStartAnimationWithDuration:_transitionDuration];
+        }
+    });
     [self animateTransition];
 }
 

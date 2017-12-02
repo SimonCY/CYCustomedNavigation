@@ -8,12 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CYAnimatedTransitionDelegate <NSObject>
+
+- (void)CYAnimatedTransitionStartAnimationWithDuration:(NSTimeInterval)duration;
+
+@end
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CYBaseAnimatedTransition : NSObject<UIViewControllerAnimatedTransitioning>
 
+@property (weak,nonatomic) id<CYAnimatedTransitionDelegate> delegate;
+
+@property (nonatomic, weak) id <UIViewControllerContextTransitioning> transitionContext;
+
 /**
- *  Transition Duration.
+ *  Transition Duration, default is 0.6.
  */
 @property (nonatomic, assign, readonly) NSTimeInterval  transitionDuration;
 
@@ -33,12 +44,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, weak) UIView *containerView;
 
 /**
- *  Animate Transition.
+ *  Animate Transition. recover it in animatedTransition's subclass.
  */
 - (void)animateTransition;
 
 /**
  *  Complete transition.
+ *  This must be called whenever a transition completes (or is cancelled.)
  */
 - (void)transitionComplete;
 

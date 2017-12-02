@@ -7,11 +7,16 @@
 //
 
 #import "ListViewController.h"
+#import "CYMagicMoveTransition.h"
+#import "DetailViewController.h"
 
-@interface ListViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface ListViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,CYMagicMoveTransitionFromViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@property (strong,nonatomic) CYMagicMoveTransition *animatedTransition;
+
+@property (strong,nonatomic) UICollectionViewCell *sourceCell;
 @end
 
 static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
@@ -20,6 +25,8 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.navigationController.delegate = self;
     
     [self setupUI];
 }
@@ -31,8 +38,9 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     
     self.collectionView.contentInset = UIEdgeInsetsMake(18, 0, 0, 0);
-    
-    layout.itemSize = CGSizeMake((self.view.bounds.size.width - 18 * 3) / 2,(self.view.bounds.size.width - 18 * 3) / 2 * 1.5);
+
+    CGFloat itemW = (self.view.bounds.size.width - 18 * 3) / 2;
+    layout.itemSize = CGSizeMake(itemW,itemW * 1004 / 690);
     
     layout.sectionInset = UIEdgeInsetsMake(40,18,18,18);
     
@@ -42,6 +50,17 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
     
     layout.minimumInteritemSpacing = 18;
  
+}
+
+#pragma mark - getter
+
+- (CYMagicMoveTransition *)animatedTransition {
+
+    if (_animatedTransition == nil) {
+        _animatedTransition = [[CYMagicMoveTransition alloc] init];
+        _animatedTransition.fromViewDataSource = self;
+    }
+    return _animatedTransition;
 }
 
 #pragma mark - collectionViewDataSource
@@ -76,6 +95,37 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
     return cell;
 }
 
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
+    NSIndexPath *sourceIndexPath = [[self.collectionView indexPathsForSelectedItems] firstObject];
+    self.sourceCell = [self.collectionView cellForItemAtIndexPath:sourceIndexPath];
+
+    DetailViewController *detailVC = segue.destinationViewController;
+    self.animatedTransition.toViewDataSource = detailVC;
+    self.animatedTransition.delegate = detailVC;
+}
+
+#pragma mark - CYMagicMoveTransitionDataSource
+
+- (UIView *)fromViewForCYMagicMoveTransition {
+
+    return [self.sourceCell viewWithTag:1];
+}
+
+#pragma mark <UINavigationControllerDelegate>
+
+- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                fromViewController:(UIViewController *)fromVC
+                                                  toViewController:(UIViewController *)toVC{
+
+    if ([toVC isKindOfClass:[DetailViewController class]]) {
+
+        return self.animatedTransition;
+    }else{
+        return nil;
+    }
+}
 
 @end

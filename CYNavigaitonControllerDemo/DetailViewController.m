@@ -9,7 +9,9 @@
 #import "DetailViewController.h"
 
 @interface DetailViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -17,9 +19,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    
 }
 
+#pragma mark - CYMagicMoveTransitionDataSource
 
+- (UIView *)toViewForCYMagicMoveTransition {
 
+    return self.imageView;
+}
+
+#pragma mark - CYMaigicMoveTranstionDelegate
+
+- (void)CYAnimatedTransitionStartAnimationWithDuration:(NSTimeInterval)duration {
+
+    self.textView.transform = CGAffineTransformMakeTranslation(80, 0);
+    [UIView animateWithDuration:duration delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
+
+        self.textView.transform = CGAffineTransformIdentity;
+
+    } completion:nil];
+}
 @end
