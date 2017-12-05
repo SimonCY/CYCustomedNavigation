@@ -10,7 +10,23 @@
 
 @protocol CYAnimatedTransitionDelegate <NSObject>
 
-- (void)CYAnimatedTransitionStartAnimationWithDuration:(NSTimeInterval)duration;
+/*
+ * Sycn called before animation, you can add some UIViewAnimation for other view in this method and the UIViewAnimation-task's characteristic ,it would seem like to called asycn.
+ */
+- (void)CYAnimatedTransitionStartAnimatingWithDuration:(NSTimeInterval)duration;
+
+@end
+
+@protocol CYAnimatedTransitionFromViewDataSource <NSObject>
+
+- (UIView * _Nonnull)fromViewForCYAnimatedTransition;
+
+@end
+
+
+@protocol CYAnimatedTransitionToViewDataSource <NSObject>
+
+- (UIView * _Nonnull)toViewForCYAnimatedTransition;
 
 @end
 
@@ -18,6 +34,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CYBaseAnimatedTransition : NSObject<UIViewControllerAnimatedTransitioning>
+
+@property (weak,nonatomic) id<CYAnimatedTransitionFromViewDataSource> fromViewDataSource;
+
+@property (weak,nonatomic) id<CYAnimatedTransitionToViewDataSource> toViewDataSource;
 
 @property (weak,nonatomic) id<CYAnimatedTransitionDelegate> delegate;
 

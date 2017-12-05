@@ -76,12 +76,18 @@
     _containerView = [transitionContext containerView];
     _transitionContext = transitionContext;
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(CYAnimatedTransitionStartAnimatingWithDuration:)]) {
+        [self.delegate CYAnimatedTransitionStartAnimatingWithDuration:_transitionDuration];
+    }
 
-        if (self.delegate && [self.delegate respondsToSelector:@selector(CYAnimatedTransitionStartAnimationWithDuration:)]) {
-            [self.delegate CYAnimatedTransitionStartAnimationWithDuration:_transitionDuration];
-        }
-    });
+    // deal tabBar's hidden
+    UITabBar *tabBar = [self fetchTabBar];
+    if (tabBar) {
+
+        tabBar.hidden = _toViewController.hidesBottomBarWhenPushed;
+    }
+
+    // animation
     [self animateTransition];
 }
 

@@ -8,26 +8,6 @@
 
 #import "CYBaseAnimatedTransition.h"
 
-
-@protocol CYMagicMoveTransitionFromViewDataSource <NSObject>
-
-- (UIView *)fromViewForCYMagicMoveTransition;
-
-@end
-
-
-@protocol CYMagicMoveTransitionToViewDataSource <NSObject>
-
-- (UIView *)toViewForCYMagicMoveTransition;
-
-@end
-
-
-
 @interface CYMagicMoveTransition : CYBaseAnimatedTransition
-
-@property (weak,nonatomic) id<CYMagicMoveTransitionFromViewDataSource> fromViewDataSource;
-
-@property (weak,nonatomic) id<CYMagicMoveTransitionToViewDataSource> toViewDataSource;
 
 @end

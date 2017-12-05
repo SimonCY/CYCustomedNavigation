@@ -7,14 +7,13 @@
 //
 
 #import "ListViewController.h"
-#import "CYMagicMoveTransition.h"
+#import "CYAnimatedTransition.h"
 #import "DetailViewController.h"
+#import "aViewController.h"
 
-@interface ListViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,CYMagicMoveTransitionFromViewDataSource>
+@interface ListViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,CYAnimatedTransitionFromViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
-@property (strong,nonatomic) CYMagicMoveTransition *animatedTransition;
 
 @property (strong,nonatomic) UICollectionViewCell *sourceCell;
 @end
@@ -26,8 +25,6 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationController.delegate = self;
-    
     [self setupUI];
 }
 
@@ -49,18 +46,8 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
     layout.minimumLineSpacing = 18;
     
     layout.minimumInteritemSpacing = 18;
+
  
-}
-
-#pragma mark - getter
-
-- (CYMagicMoveTransition *)animatedTransition {
-
-    if (_animatedTransition == nil) {
-        _animatedTransition = [[CYMagicMoveTransition alloc] init];
-        _animatedTransition.fromViewDataSource = self;
-    }
-    return _animatedTransition;
 }
 
 #pragma mark - collectionViewDataSource
@@ -98,34 +85,22 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-    NSIndexPath *sourceIndexPath = [[self.collectionView indexPathsForSelectedItems] firstObject];
-    self.sourceCell = [self.collectionView cellForItemAtIndexPath:sourceIndexPath];
-
     DetailViewController *detailVC = segue.destinationViewController;
-    self.animatedTransition.toViewDataSource = detailVC;
-    self.animatedTransition.delegate = detailVC;
+
+    CYBaseAnimatedTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
+    animatedTransition.fromViewDataSource = self;
+    animatedTransition.toViewDataSource = detailVC;
+    animatedTransition.delegate = detailVC;
+
+    [self setCY_animatedTransition:animatedTransition forToViewControllerClass:[detailVC class]];
 }
 
-#pragma mark - CYMagicMoveTransitionDataSource
+#pragma mark - CYAnimatedTransitionDataSource
 
-- (UIView *)fromViewForCYMagicMoveTransition {
+- (UIView *)fromViewForCYAnimatedTransition {
 
-    return [self.sourceCell viewWithTag:1];
-}
-
-#pragma mark <UINavigationControllerDelegate>
-
-- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                   animationControllerForOperation:(UINavigationControllerOperation)operation
-                                                fromViewController:(UIViewController *)fromVC
-                                                  toViewController:(UIViewController *)toVC{
-
-    if ([toVC isKindOfClass:[DetailViewController class]]) {
-
-        return self.animatedTransition;
-    }else{
-        return nil;
-    }
+    NSIndexPath *sourceIndexPath = [[self.collectionView indexPathsForSelectedItems] firstObject];
+    return [[self.collectionView cellForItemAtIndexPath:sourceIndexPath] viewWithTag:1];
 }
 
 @end
