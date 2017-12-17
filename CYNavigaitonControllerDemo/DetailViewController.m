@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "CYMagicMoveInverseTransition.h"
+#import "ThirdViewController.h"
 
 @interface DetailViewController ()
 
@@ -20,6 +21,7 @@
 
 @implementation DetailViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -28,6 +30,14 @@
     edgePanGestureRecognizer.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:edgePanGestureRecognizer];
 }
+
+#pragma mark - touch
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
+    [self performSegueWithIdentifier:@"push" sender:nil];
+}
+
 
 - (void)edgePanGesture:(UIScreenEdgePanGestureRecognizer *)recognizer{
     //计算手指滑的物理距离（滑了多远，与起始位置无关）

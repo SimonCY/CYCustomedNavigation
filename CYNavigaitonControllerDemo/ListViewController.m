@@ -82,13 +82,20 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
+
     DetailViewController *detailVC = segue.destinationViewController;
 
-    CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
-    animatedTransition.sourceViewDataSource = self;
-    animatedTransition.destinationViewDataSource = detailVC;
-    animatedTransition.delegate = detailVC;
-    [self setCY_animatedTransition:animatedTransition forDestinationViewController:detailVC];
+    static int a = 0;
+    a++;
+    if (a%2 == 0) {
+
+        CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
+        animatedTransition.sourceViewDataSource = self;
+        animatedTransition.destinationViewDataSource = detailVC;
+        animatedTransition.delegate = detailVC;
+        [detailVC setCY_animatedTransition:animatedTransition forSourceViewController:self];
+    }
+
 }
 
 #pragma mark - CYAnimatedTransitionDataSource

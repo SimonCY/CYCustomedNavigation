@@ -110,7 +110,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="S3u-G7-8ve" customClass="image">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="S3u-G7-8ve" customClass="image">
                                 <rect key="frame" x="16" y="82" width="343" height="499"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="S3u-G7-8ve" secondAttribute="height" multiplier="690:1004" id="QnM-Bd-7gy"/>
@@ -137,11 +137,52 @@
                     <connections>
                         <outlet property="imageView" destination="S3u-G7-8ve" id="NG1-Cg-RW3"/>
                         <outlet property="textView" destination="4K7-MX-peX" id="F1G-DO-s2D"/>
+                        <segue destination="hnV-UM-UxW" kind="show" identifier="push" id="Jfe-L7-ket"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o6W-a6-QcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1480.8" y="373.76311844077964"/>
+        </scene>
+        <!--Third View Controller-->
+        <scene sceneID="aOy-CG-qQU">
+            <objects>
+                <viewController id="hnV-UM-UxW" customClass="ThirdViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FOs-9r-gY1"/>
+                        <viewControllerLayoutGuide type="bottom" id="uz8-Id-jJR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="noR-mA-h0q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34c-fU-IdI">
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0rD-Rf-b0X">
+                                        <rect key="frame" x="0.0" y="0.0" width="690" height="1004"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0rD-Rf-b0X" firstAttribute="leading" secondItem="34c-fU-IdI" secondAttribute="leading" id="DpC-Ya-z7N"/>
+                                    <constraint firstItem="0rD-Rf-b0X" firstAttribute="top" secondItem="34c-fU-IdI" secondAttribute="top" id="K8C-C4-ZpV"/>
+                                    <constraint firstAttribute="trailing" secondItem="0rD-Rf-b0X" secondAttribute="trailing" id="pQc-9d-qRB"/>
+                                    <constraint firstAttribute="bottom" secondItem="0rD-Rf-b0X" secondAttribute="bottom" id="wCu-3H-aqd"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uz8-Id-jJR" firstAttribute="top" secondItem="34c-fU-IdI" secondAttribute="bottom" id="Jhu-PQ-dRc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="34c-fU-IdI" secondAttribute="trailing" id="KUl-hE-unD"/>
+                            <constraint firstItem="34c-fU-IdI" firstAttribute="leading" secondItem="noR-mA-h0q" secondAttribute="leadingMargin" id="Vgs-Sz-w7O"/>
+                            <constraint firstItem="34c-fU-IdI" firstAttribute="top" secondItem="FOs-9r-gY1" secondAttribute="bottom" id="hph-YR-Cy4"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1YT-OX-gA9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2175" y="374"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X5Q-tX-XHj">

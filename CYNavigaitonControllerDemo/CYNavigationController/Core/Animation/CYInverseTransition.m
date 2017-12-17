@@ -7,6 +7,7 @@
 //
 
 #import "CYInverseTransition.h"
+#import "CYBaseAnimatedTransition.h"
 
 @implementation CYInverseTransition
 

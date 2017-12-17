@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CYBaseAnimatedTransition;
+@class CYForwardTransition;
 
 @interface UIViewController (CYAnimatedTransition) <UINavigationControllerDelegate>
+ 
+- (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition forSourceViewController:(UIViewController *)sourceViewController;
 
-- (void)setCY_animatedTransition:(CYBaseAnimatedTransition *)cy_animatedTransition forDestinationViewController:(UIViewController *)destinationViewController;
-
-- (CYBaseAnimatedTransition *)cy_animatedTransitionForDestinationViewController:(UIViewController *)destinationViewController;
+- (CYForwardTransition *)cy_animatedTransitionForSourceViewController:(UIViewController *)sourceViewController;
 
 @end

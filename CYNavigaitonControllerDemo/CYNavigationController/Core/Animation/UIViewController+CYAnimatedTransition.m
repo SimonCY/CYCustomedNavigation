@@ -8,29 +8,29 @@
 
 #import "UIViewController+CYAnimatedTransition.h"
 #import <objc/runtime.h>
-#import "CYBaseAnimatedTransition.h"
+#import "CYForwardTransition.h"
 
 @implementation UIViewController (CYAnimatedTransition)
 
 #pragma - mark - setter
 
-- (void)setCY_animatedTransition:(CYBaseAnimatedTransition *)cy_animatedTransition forDestinationViewController:(UIViewController *)destinationViewController {
+- (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition forSourceViewController:(UIViewController *)sourceViewController {
 
-    NSAssert((self.navigationController != nil), @"fromViewController doesn't have a navigationController");
-    self.navigationController.delegate = self;
+    NSAssert((sourceViewController.navigationController != nil), @"fromViewController doesn't have a navigationController");
+    sourceViewController.navigationController.delegate = self;
  
-    if ([self cy_animatedTransitionForDestinationViewController:destinationViewController] != cy_animatedTransition) {
+    if ([self cy_animatedTransitionForSourceViewController:sourceViewController] != cy_animatedTransition) {
 
-        objc_setAssociatedObject(self, class_getName([destinationViewController class]),
+        objc_setAssociatedObject(self, class_getName([sourceViewController class]),
                                  cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
 #pragma mark - getter
 
-- (CYBaseAnimatedTransition *)cy_animatedTransitionForDestinationViewController:(UIViewController *)destinationViewController {
+- (CYForwardTransition *)cy_animatedTransitionForSourceViewController:(UIViewController *)sourceViewController {
 
-    return objc_getAssociatedObject(self, class_getName([destinationViewController class]));
+    return objc_getAssociatedObject(self, class_getName([sourceViewController class]));
 }
 
 #pragma - mark - navigationControllerDelegate
@@ -39,8 +39,14 @@
                                    animationControllerForOperation:(UINavigationControllerOperation)operation
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC {
+    if ([toVC cy_animatedTransitionForSourceViewController:fromVC]) {
 
-    return [self cy_animatedTransitionForDestinationViewController:toVC];
+        return [toVC cy_animatedTransitionForSourceViewController:fromVC];
+    } else if ([fromVC cy_animatedTransitionForSourceViewController:toVC]) {
+
+        return (id <UIViewControllerAnimatedTransitioning>)[fromVC cy_animatedTransitionForSourceViewController:toVC].inverseTransition;
+    }
+    return nil;
 }
 
 //- (id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController

@@ -7,9 +7,8 @@
 //
 
 #import "CYBaseAnimatedTransition.h"
+
 @class CYInverseTransition;
-
-
 
 
 @interface CYForwardTransition : CYBaseAnimatedTransition

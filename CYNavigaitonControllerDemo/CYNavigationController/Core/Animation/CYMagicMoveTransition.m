@@ -19,7 +19,7 @@
 - (void)animateTransition {
     [super animateTransition];
     
-    // Get fromView, toView and create fromView's snapShot.
+    // Get sourceView, destinationView and create sourceView's snapShot.
     UIView *sourceView = [self.sourceViewDataSource sourceViewForCYAnimatedTransition:self];
     UIView *destinationView = [self.destinationViewDataSource destinationViewForCYAnimatedTransition:self];
 

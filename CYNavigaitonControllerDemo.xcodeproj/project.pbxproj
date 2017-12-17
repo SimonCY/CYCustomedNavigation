@@ -11,6 +11,7 @@
 		B6308FDC1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */; };
 		B6308FE01FD599B000836F1A /* UIViewController+CYAnimatedTransition.h in Sources */ = {isa = PBXBuildFile; fileRef = B6308FDA1FD597F500836F1A /* UIViewController+CYAnimatedTransition.h */; };
 		B6308FE31FD5B05900836F1A /* aViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FE21FD5B05900836F1A /* aViewController.m */; };
+		B63FADC21FE6E58E00C04C6A /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63FADC11FE6E58E00C04C6A /* ThirdViewController.m */; };
 		B69278121FC2C157005E9126 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278111FC2C157005E9126 /* AppDelegate.m */; };
 		B69278151FC2C157005E9126 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278141FC2C157005E9126 /* ListViewController.m */; };
 		B69278181FC2C157005E9126 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B69278161FC2C157005E9126 /* Main.storyboard */; };
@@ -51,6 +52,8 @@
 		B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYAnimatedTransition.m"; sourceTree = "<group>"; };
 		B6308FE11FD5B05900836F1A /* aViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aViewController.h; sourceTree = "<group>"; };
 		B6308FE21FD5B05900836F1A /* aViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aViewController.m; sourceTree = "<group>"; };
+		B63FADC01FE6E58E00C04C6A /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		B63FADC11FE6E58E00C04C6A /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		B692780D1FC2C157005E9126 /* CYNavigaitonControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYNavigaitonControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69278101FC2C157005E9126 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B69278111FC2C157005E9126 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				B69278141FC2C157005E9126 /* ListViewController.m */,
 				B692784A1FC2C519005E9126 /* DetailViewController.h */,
 				B692784B1FC2C519005E9126 /* DetailViewController.m */,
+				B63FADC01FE6E58E00C04C6A /* ThirdViewController.h */,
+				B63FADC11FE6E58E00C04C6A /* ThirdViewController.m */,
 				B6308FE11FD5B05900836F1A /* aViewController.h */,
 				B6308FE21FD5B05900836F1A /* aViewController.m */,
 				B69278161FC2C157005E9126 /* Main.storyboard */,
@@ -343,6 +348,7 @@
 				B69278151FC2C157005E9126 /* ListViewController.m in Sources */,
 				B69278481FC2C35E005E9126 /* CYBaseAnimatedTransition.m in Sources */,
 				B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */,
+				B63FADC21FE6E58E00C04C6A /* ThirdViewController.m in Sources */,
 				B69278201FC2C157005E9126 /* main.m in Sources */,
 				B692784F1FC2E82D005E9126 /* CYMagicMoveTransition.m in Sources */,
 				B6308FD91FD43A4C00836F1A /* CYMagicMoveInverseTransition.m in Sources */,
