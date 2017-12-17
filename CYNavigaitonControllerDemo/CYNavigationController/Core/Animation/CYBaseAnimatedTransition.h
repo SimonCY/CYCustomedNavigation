@@ -33,13 +33,14 @@
 @end
 
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CYBaseAnimatedTransition : NSObject<UIViewControllerAnimatedTransitioning>
 
-@property (weak,nonatomic) id<CYAnimatedTransitionSourceViewDataSource> sourceViewDataSource;
+@property (weak,nonatomic) id<CYAnimatedTransitionSourceViewDataSource> _Nullable sourceViewDataSource;
 
-@property (weak,nonatomic) id<CYAnimatedTransitionDestinationViewDataSource> destinationViewDataSource;
+@property (weak,nonatomic) id<CYAnimatedTransitionDestinationViewDataSource> _Nullable destinationViewDataSource;
 
 @property (weak,nonatomic) id<CYAnimatedTransitionDelegate> delegate;
 

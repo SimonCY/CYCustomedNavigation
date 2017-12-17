@@ -23,6 +23,8 @@
 		B69278481FC2C35E005E9126 /* CYBaseAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278471FC2C35E005E9126 /* CYBaseAnimatedTransition.m */; };
 		B692784C1FC2C519005E9126 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B692784B1FC2C519005E9126 /* DetailViewController.m */; };
 		B692784F1FC2E82D005E9126 /* CYMagicMoveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */; };
+		B69B5C831FE6A9B200C0CABC /* CYForwardTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */; };
+		B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +49,6 @@
 		B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYMagicMoveInverseTransition.m; sourceTree = "<group>"; };
 		B6308FDA1FD597F500836F1A /* UIViewController+CYAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYAnimatedTransition.h"; sourceTree = "<group>"; };
 		B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYAnimatedTransition.m"; sourceTree = "<group>"; };
-		B6308FDD1FD5990F00836F1A /* CYAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYAnimatedTransition.h; sourceTree = "<group>"; };
 		B6308FE11FD5B05900836F1A /* aViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aViewController.h; sourceTree = "<group>"; };
 		B6308FE21FD5B05900836F1A /* aViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aViewController.m; sourceTree = "<group>"; };
 		B692780D1FC2C157005E9126 /* CYNavigaitonControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYNavigaitonControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +75,11 @@
 		B692784B1FC2C519005E9126 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B692784D1FC2E82D005E9126 /* CYMagicMoveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYMagicMoveTransition.h; sourceTree = "<group>"; };
 		B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYMagicMoveTransition.m; sourceTree = "<group>"; };
+		B69B5C801FE6A99D00C0CABC /* CYAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYAnimatedTransition.h; sourceTree = "<group>"; };
+		B69B5C811FE6A9B200C0CABC /* CYForwardTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYForwardTransition.h; sourceTree = "<group>"; };
+		B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYForwardTransition.m; sourceTree = "<group>"; };
+		B69B5C841FE6A9BE00C0CABC /* CYInverseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYInverseTransition.h; sourceTree = "<group>"; };
+		B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYInverseTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,9 +179,13 @@
 		B69278491FC2C361005E9126 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				B6308FDD1FD5990F00836F1A /* CYAnimatedTransition.h */,
+				B69B5C801FE6A99D00C0CABC /* CYAnimatedTransition.h */,
 				B69278461FC2C35E005E9126 /* CYBaseAnimatedTransition.h */,
 				B69278471FC2C35E005E9126 /* CYBaseAnimatedTransition.m */,
+				B69B5C811FE6A9B200C0CABC /* CYForwardTransition.h */,
+				B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */,
+				B69B5C841FE6A9BE00C0CABC /* CYInverseTransition.h */,
+				B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */,
 				B692784D1FC2E82D005E9126 /* CYMagicMoveTransition.h */,
 				B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */,
 				B6308FD71FD43A4C00836F1A /* CYMagicMoveInverseTransition.h */,
@@ -327,10 +337,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B69B5C831FE6A9B200C0CABC /* CYForwardTransition.m in Sources */,
 				B6308FE01FD599B000836F1A /* UIViewController+CYAnimatedTransition.h in Sources */,
 				B6308FE31FD5B05900836F1A /* aViewController.m in Sources */,
 				B69278151FC2C157005E9126 /* ListViewController.m in Sources */,
 				B69278481FC2C35E005E9126 /* CYBaseAnimatedTransition.m in Sources */,
+				B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */,
 				B69278201FC2C157005E9126 /* main.m in Sources */,
 				B692784F1FC2E82D005E9126 /* CYMagicMoveTransition.m in Sources */,
 				B6308FD91FD43A4C00836F1A /* CYMagicMoveInverseTransition.m in Sources */,

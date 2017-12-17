@@ -76,7 +76,6 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
         ((UILabel *)[[cell contentView] viewWithTag:10]).text = [NSString stringWithFormat:@"controller %@", @(indexPath.item)];
     }
     
-    
     return cell;
 }
 

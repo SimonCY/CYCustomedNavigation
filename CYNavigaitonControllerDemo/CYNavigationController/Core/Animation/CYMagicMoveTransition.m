@@ -17,7 +17,8 @@
 #pragma mark - cover from super-class
 
 - (void)animateTransition {
-
+    [super animateTransition];
+    
     // Get fromView, toView and create fromView's snapShot.
     UIView *sourceView = [self.sourceViewDataSource sourceViewForCYAnimatedTransition:self];
     UIView *destinationView = [self.destinationViewDataSource destinationViewForCYAnimatedTransition:self];

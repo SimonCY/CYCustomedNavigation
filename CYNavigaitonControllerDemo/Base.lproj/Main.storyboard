@@ -60,7 +60,7 @@
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.0" green="0.77236200470000005" blue="0.97626410590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.40000000000000002" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="XLZ-Wb-x8Y" firstAttribute="leading" secondItem="pTV-bd-x7w" secondAttribute="leadingMargin" id="1zf-Ks-Xgx"/>
                                             <constraint firstItem="gU3-eR-rXP" firstAttribute="top" secondItem="pTV-bd-x7w" secondAttribute="top" id="6qs-b4-XzR"/>

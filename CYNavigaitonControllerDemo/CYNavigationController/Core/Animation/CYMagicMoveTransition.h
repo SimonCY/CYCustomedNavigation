@@ -6,8 +6,8 @@
 //  Copyright © 2017年 DeepAI. All rights reserved.
 //
 
-#import "CYBaseAnimatedTransition.h"
+#import "CYForwardTransition.h"
 
-@interface CYMagicMoveTransition : CYBaseAnimatedTransition
+@interface CYMagicMoveTransition : CYForwardTransition
 
 @end
