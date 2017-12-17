@@ -14,7 +14,7 @@
 
 - (void)animateTransition {
 
-    BOOL isTabBarHidden = self.toViewController.hidesBottomBarWhenPushed;
+    BOOL isTabBarHidden = self.destinationViewController.hidesBottomBarWhenPushed;
 
     [self animatedTransitionWithTabbarHidden:isTabBarHidden];
 }
@@ -31,33 +31,33 @@
     }
 
     // Get fromView, toView and create fromView's snapShot.
-    UIView *fromView = [self.fromViewDataSource fromViewForCYAnimatedTransition];
-    UIView *toView = [self.toViewDataSource toViewForCYAnimatedTransition];
+    UIView *sourceView = [self.sourceViewDataSource sourceViewForCYAnimatedTransition:self];
+    UIView *destinationView = [self.destinationViewDataSource destinationViewForCYAnimatedTransition:self];
 
-    UIView *snapShotView = [fromView snapshotViewAfterScreenUpdates:NO];
-    snapShotView.frame = [self.containerView convertRect:fromView.frame fromView:fromView.superview];
+    UIView *snapShotView = [sourceView snapshotViewAfterScreenUpdates:NO];
+    snapShotView.frame = [self.containerView convertRect:sourceView.frame fromView:sourceView.superview];
 
     //Setup toVC before animating.
-    self.toViewController.view.frame = [self.transitionContext finalFrameForViewController:self.toViewController];
-    self.toViewController.view.alpha = 0;
+    self.destinationViewController.view.frame = [self.transitionContext finalFrameForViewController:self.destinationViewController];
+    self.destinationViewController.view.alpha = 0;
 
     //Start animating.
-    [self.containerView addSubview:self.toViewController.view];
+    [self.containerView addSubview:self.destinationViewController.view];
     [self.containerView addSubview:snapShotView];
     [self.containerView layoutIfNeeded];
 
-    fromView.hidden = YES;
-    toView.hidden = YES;
+    sourceView.hidden = YES;
+    destinationView.hidden = YES;
 
     [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
 
-        self.toViewController.view.alpha = 1.0;
-        snapShotView.frame = [self.containerView convertRect:toView.frame fromView:toView.superview];
+        self.destinationViewController.view.alpha = 1.0;
+        snapShotView.frame = [self.containerView convertRect:destinationView.frame fromView:destinationView.superview];
 
     } completion:^(BOOL finished) {
 
-        fromView.hidden = NO;
-        toView.hidden = NO;
+        sourceView.hidden = NO;
+        destinationView.hidden = NO;
         [snapShotView removeFromSuperview];
         [self transitionComplete];
     }];

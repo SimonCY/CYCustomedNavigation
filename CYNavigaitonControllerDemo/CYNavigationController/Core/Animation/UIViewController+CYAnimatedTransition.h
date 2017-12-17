@@ -11,8 +11,8 @@
 
 @interface UIViewController (CYAnimatedTransition) <UINavigationControllerDelegate>
 
-- (void)setCY_animatedTransition:(CYBaseAnimatedTransition *)cy_animatedTransition forToViewControllerClass:(Class)toViewControllerClass;
+- (void)setCY_animatedTransition:(CYBaseAnimatedTransition *)cy_animatedTransition forDestinationViewController:(UIViewController *)destinationViewController;
 
-- (CYBaseAnimatedTransition *)cy_animatedTransitionForToViewControllerClass:(Class)toViewControllerClass;
+- (CYBaseAnimatedTransition *)cy_animatedTransitionForDestinationViewController:(UIViewController *)destinationViewController;
 
 @end

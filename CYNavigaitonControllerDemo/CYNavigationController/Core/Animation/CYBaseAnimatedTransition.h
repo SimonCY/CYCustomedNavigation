@@ -8,25 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+@class CYBaseAnimatedTransition;
+
 @protocol CYAnimatedTransitionDelegate <NSObject>
 
 /*
  * Sycn called before animation, you can add some UIViewAnimation for other view in this method and the UIViewAnimation-task's characteristic ,it would seem like to called asycn.
  */
-- (void)CYAnimatedTransitionStartAnimatingWithDuration:(NSTimeInterval)duration;
+- (void)CYAnimatedTransitionStartAnimatingWithAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
 
 @end
 
-@protocol CYAnimatedTransitionFromViewDataSource <NSObject>
+@protocol CYAnimatedTransitionSourceViewDataSource <NSObject>
 
-- (UIView * _Nonnull)fromViewForCYAnimatedTransition;
+- (UIView * _Nonnull)sourceViewForCYAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
 
 @end
 
 
-@protocol CYAnimatedTransitionToViewDataSource <NSObject>
+@protocol CYAnimatedTransitionDestinationViewDataSource <NSObject>
 
-- (UIView * _Nonnull)toViewForCYAnimatedTransition;
+- (UIView * _Nonnull)destinationViewForCYAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
 
 @end
 
@@ -35,9 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CYBaseAnimatedTransition : NSObject<UIViewControllerAnimatedTransitioning>
 
-@property (weak,nonatomic) id<CYAnimatedTransitionFromViewDataSource> fromViewDataSource;
+@property (weak,nonatomic) id<CYAnimatedTransitionSourceViewDataSource> sourceViewDataSource;
 
-@property (weak,nonatomic) id<CYAnimatedTransitionToViewDataSource> toViewDataSource;
+@property (weak,nonatomic) id<CYAnimatedTransitionDestinationViewDataSource> destinationViewDataSource;
 
 @property (weak,nonatomic) id<CYAnimatedTransitionDelegate> delegate;
 
@@ -51,12 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  From view controller.
  */
-@property (nonatomic, readonly, weak) UIViewController *fromViewController;
+@property (nonatomic, readonly, weak) UIViewController *sourceViewController;
 
 /**
  *  Target view controller.
  */
-@property (nonatomic, readonly, weak) UIViewController *toViewController;
+@property (nonatomic, readonly, weak) UIViewController *destinationViewController;
 
 /**
  *  Container view.
@@ -64,18 +66,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, weak) UIView *containerView;
 
 /**
- *  Animate Transition. recover it in animatedTransition's subclass.
+ *  Animate Transition's implementation. Recover it in animatedTransition's subclass.
  */
 - (void)animateTransition;
 
 /**
  *  Complete transition.
- *  This must be called whenever a transition completes (or is cancelled.)
+ *  This must be called whenever a transition completes. Call it at the end of method "- (void)animateTransition" when the view-animation all finished.
  */
 - (void)transitionComplete;
 
 /**
- *  Fetch tabbar if existed.
+ *  Fetch tabbar of destinationViewController if existed.
  */
 - (UITabBar * _Nullable)fetchTabBar;
 

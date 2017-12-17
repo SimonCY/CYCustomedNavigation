@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "CYMagicMoveInverseTransition.h"
 
 @interface DetailViewController ()
 
@@ -25,17 +26,17 @@
 
 #pragma mark - CYMagicMoveTransitionDataSource
 
-- (UIView *)toViewForCYAnimatedTransition {
+- (UIView *)destinationViewForCYAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition; {
 
     return self.imageView;
 }
 
 #pragma mark - CYMaigicMoveTranstionDelegate
 
-- (void)CYAnimatedTransitionStartAnimatingWithDuration:(NSTimeInterval)duration {
+- (void)CYAnimatedTransitionStartAnimatingWithAnimatedTransition:(CYBaseAnimatedTransition *)animatedTransition {
 
     self.textView.transform = CGAffineTransformMakeTranslation(80, 0);
-    [UIView animateWithDuration:duration delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:animatedTransition.transitionDuration delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
 
         self.textView.transform = CGAffineTransformIdentity;
 
@@ -43,4 +44,5 @@
         
     }];
 }
+
 @end

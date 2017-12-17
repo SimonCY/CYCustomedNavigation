@@ -14,23 +14,23 @@
 
 #pragma - mark - setter
 
-- (void)setCY_animatedTransition:(CYBaseAnimatedTransition *)cy_animatedTransition forToViewControllerClass:(__unsafe_unretained Class)toViewControllerClass {
+- (void)setCY_animatedTransition:(CYBaseAnimatedTransition *)cy_animatedTransition forDestinationViewController:(UIViewController *)destinationViewController {
 
     NSAssert((self.navigationController != nil), @"fromViewController doesn't have a navigationController");
     self.navigationController.delegate = self;
  
-    if ([self cy_animatedTransitionForToViewControllerClass:toViewControllerClass] != cy_animatedTransition) {
+    if ([self cy_animatedTransitionForDestinationViewController:destinationViewController] != cy_animatedTransition) {
 
-        objc_setAssociatedObject(self, class_getName(toViewControllerClass),
+        objc_setAssociatedObject(self, class_getName([destinationViewController class]),
                                  cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
 #pragma mark - getter
 
-- (CYBaseAnimatedTransition *)cy_animatedTransitionForToViewControllerClass:(Class)toViewControllerClass {
+- (CYBaseAnimatedTransition *)cy_animatedTransitionForDestinationViewController:(UIViewController *)destinationViewController {
 
-    return objc_getAssociatedObject(self, class_getName(toViewControllerClass));
+    return objc_getAssociatedObject(self, class_getName([destinationViewController class]));
 }
 
 #pragma - mark - navigationControllerDelegate
@@ -40,6 +40,15 @@
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC {
 
-    return [self cy_animatedTransitionForToViewControllerClass:[toVC class]];
+    return [self cy_animatedTransitionForDestinationViewController:toVC];
 }
+
+//- (id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+//                          interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController{
+//    if ([animationController isKindOfClass:[MagicMoveInverseTransition class]]) {
+//        return self.percentDrivenTransition;
+//    }else{
+//        return nil;
+//    }
+//}
 @end

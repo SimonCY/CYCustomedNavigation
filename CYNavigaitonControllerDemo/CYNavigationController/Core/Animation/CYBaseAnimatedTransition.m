@@ -71,20 +71,20 @@
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
 
-    _fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    _toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    _sourceViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    _destinationViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     _containerView = [transitionContext containerView];
     _transitionContext = transitionContext;
 
-    if (self.delegate && [self.delegate respondsToSelector:@selector(CYAnimatedTransitionStartAnimatingWithDuration:)]) {
-        [self.delegate CYAnimatedTransitionStartAnimatingWithDuration:_transitionDuration];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(CYAnimatedTransitionStartAnimatingWithAnimatedTransition:)]) {
+        [self.delegate CYAnimatedTransitionStartAnimatingWithAnimatedTransition:self];
     }
 
     // deal tabBar's hidden
     UITabBar *tabBar = [self fetchTabBar];
     if (tabBar) {
 
-        tabBar.hidden = _toViewController.hidesBottomBarWhenPushed;
+        tabBar.hidden = _destinationViewController.hidesBottomBarWhenPushed;
     }
 
     // animation

@@ -11,7 +11,7 @@
 #import "DetailViewController.h"
 #import "aViewController.h"
 
-@interface ListViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,CYAnimatedTransitionFromViewDataSource>
+@interface ListViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,CYAnimatedTransitionSourceViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -46,8 +46,6 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
     layout.minimumLineSpacing = 18;
     
     layout.minimumInteritemSpacing = 18;
-
- 
 }
 
 #pragma mark - collectionViewDataSource
@@ -87,17 +85,16 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
 
     DetailViewController *detailVC = segue.destinationViewController;
 
-    CYBaseAnimatedTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
-    animatedTransition.fromViewDataSource = self;
-    animatedTransition.toViewDataSource = detailVC;
+    CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
+    animatedTransition.sourceViewDataSource = self;
+    animatedTransition.destinationViewDataSource = detailVC;
     animatedTransition.delegate = detailVC;
-
-    [self setCY_animatedTransition:animatedTransition forToViewControllerClass:[detailVC class]];
+    [self setCY_animatedTransition:animatedTransition forDestinationViewController:detailVC];
 }
 
 #pragma mark - CYAnimatedTransitionDataSource
 
-- (UIView *)fromViewForCYAnimatedTransition {
+- (UIView *)sourceViewForCYAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition; {
 
     NSIndexPath *sourceIndexPath = [[self.collectionView indexPathsForSelectedItems] firstObject];
     return [[self.collectionView cellForItemAtIndexPath:sourceIndexPath] viewWithTag:1];
