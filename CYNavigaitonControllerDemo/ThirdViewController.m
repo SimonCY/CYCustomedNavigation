@@ -8,7 +8,7 @@
 
 #import "ThirdViewController.h"
 
-@interface ThirdViewController ()
+@interface ThirdViewController ()<UINavigationControllerDelegate>
 
 @end
 
@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+//    self.navigationController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {

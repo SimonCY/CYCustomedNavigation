@@ -55,4 +55,16 @@
     [_inverseTransition setValue:change[NSKeyValueChangeNewKey] forKeyPath:keyPath];
 }
 
+#pragma mark - getter
+
+- (UIView *)sourceView {
+
+    return [self.sourceViewDataSource sourceViewForCYAnimatedTransition:self];
+}
+
+- (UIView *)destinationView {
+
+    return [self.destinationViewDataSource destinationViewForCYAnimatedTransition:self];
+}
+
 @end

@@ -11,4 +11,17 @@
 
 @implementation CYInverseTransition
 
+#pragma mark - getter
+
+- (UIView *)sourceView {
+
+    return [self.destinationViewDataSource destinationViewForCYAnimatedTransition:self];
+}
+
+- (UIView *)destinationView {
+
+    return [self.sourceViewDataSource sourceViewForCYAnimatedTransition:self];
+}
+
+
 @end

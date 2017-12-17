@@ -51,6 +51,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, readonly) NSTimeInterval  transitionDuration;
 
+@property (weak,nonatomic,readonly) UIView * _Nullable sourceView;
+
+@property (weak,nonatomic,readonly) UIView * _Nullable destinationView;
+
 /**
  *  From view controller.
  */

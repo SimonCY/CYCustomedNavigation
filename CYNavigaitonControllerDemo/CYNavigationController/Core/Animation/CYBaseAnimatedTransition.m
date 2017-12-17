@@ -24,6 +24,8 @@
     return self;
 }
 
+#pragma mark - getter
+
 #pragma mark - public
 
 - (void)transitionComplete {
