@@ -9,5 +9,7 @@
 #import "CYInverseTransition.h"
 
 @interface CYMagicMoveInverseTransition : CYInverseTransition
- 
+
+
+
 @end

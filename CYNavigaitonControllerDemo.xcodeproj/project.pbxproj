@@ -10,7 +10,6 @@
 		B6308FD91FD43A4C00836F1A /* CYMagicMoveInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */; };
 		B6308FDC1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */; };
 		B6308FE01FD599B000836F1A /* UIViewController+CYAnimatedTransition.h in Sources */ = {isa = PBXBuildFile; fileRef = B6308FDA1FD597F500836F1A /* UIViewController+CYAnimatedTransition.h */; };
-		B6308FE31FD5B05900836F1A /* aViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FE21FD5B05900836F1A /* aViewController.m */; };
 		B63FADC21FE6E58E00C04C6A /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63FADC11FE6E58E00C04C6A /* ThirdViewController.m */; };
 		B69278121FC2C157005E9126 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278111FC2C157005E9126 /* AppDelegate.m */; };
 		B69278151FC2C157005E9126 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278141FC2C157005E9126 /* ListViewController.m */; };
@@ -26,6 +25,7 @@
 		B692784F1FC2E82D005E9126 /* CYMagicMoveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */; };
 		B69B5C831FE6A9B200C0CABC /* CYForwardTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */; };
 		B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */; };
+		B69DD0071FE7B7880000BAA3 /* aViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69DD0061FE7B7880000BAA3 /* aViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +50,6 @@
 		B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYMagicMoveInverseTransition.m; sourceTree = "<group>"; };
 		B6308FDA1FD597F500836F1A /* UIViewController+CYAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYAnimatedTransition.h"; sourceTree = "<group>"; };
 		B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYAnimatedTransition.m"; sourceTree = "<group>"; };
-		B6308FE11FD5B05900836F1A /* aViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aViewController.h; sourceTree = "<group>"; };
-		B6308FE21FD5B05900836F1A /* aViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aViewController.m; sourceTree = "<group>"; };
 		B63FADC01FE6E58E00C04C6A /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		B63FADC11FE6E58E00C04C6A /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		B692780D1FC2C157005E9126 /* CYNavigaitonControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYNavigaitonControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +81,8 @@
 		B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYForwardTransition.m; sourceTree = "<group>"; };
 		B69B5C841FE6A9BE00C0CABC /* CYInverseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYInverseTransition.h; sourceTree = "<group>"; };
 		B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYInverseTransition.m; sourceTree = "<group>"; };
+		B69DD0051FE7B7880000BAA3 /* aViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aViewController.h; sourceTree = "<group>"; };
+		B69DD0061FE7B7880000BAA3 /* aViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +142,8 @@
 				B692784B1FC2C519005E9126 /* DetailViewController.m */,
 				B63FADC01FE6E58E00C04C6A /* ThirdViewController.h */,
 				B63FADC11FE6E58E00C04C6A /* ThirdViewController.m */,
-				B6308FE11FD5B05900836F1A /* aViewController.h */,
-				B6308FE21FD5B05900836F1A /* aViewController.m */,
+				B69DD0051FE7B7880000BAA3 /* aViewController.h */,
+				B69DD0061FE7B7880000BAA3 /* aViewController.m */,
 				B69278161FC2C157005E9126 /* Main.storyboard */,
 				B69278191FC2C157005E9126 /* Assets.xcassets */,
 				B692781B1FC2C157005E9126 /* LaunchScreen.storyboard */,
@@ -181,30 +181,38 @@
 			path = CYNavigationController;
 			sourceTree = "<group>";
 		};
-		B69278491FC2C361005E9126 /* Animation */ = {
+		B69278491FC2C361005E9126 /* CYAnimatedTransition */ = {
 			isa = PBXGroup;
 			children = (
+				B69DD0041FE7B5E60000BAA3 /* Core */,
 				B69B5C801FE6A99D00C0CABC /* CYAnimatedTransition.h */,
+				B692784D1FC2E82D005E9126 /* CYMagicMoveTransition.h */,
+				B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */,
+				B6308FD71FD43A4C00836F1A /* CYMagicMoveInverseTransition.h */,
+				B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */,
+			);
+			path = CYAnimatedTransition;
+			sourceTree = "<group>";
+		};
+		B69278501FC2F1D0005E9126 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B69278491FC2C361005E9126 /* CYAnimatedTransition */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B69DD0041FE7B5E60000BAA3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
 				B69278461FC2C35E005E9126 /* CYBaseAnimatedTransition.h */,
 				B69278471FC2C35E005E9126 /* CYBaseAnimatedTransition.m */,
 				B69B5C811FE6A9B200C0CABC /* CYForwardTransition.h */,
 				B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */,
 				B69B5C841FE6A9BE00C0CABC /* CYInverseTransition.h */,
 				B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */,
-				B692784D1FC2E82D005E9126 /* CYMagicMoveTransition.h */,
-				B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */,
-				B6308FD71FD43A4C00836F1A /* CYMagicMoveInverseTransition.h */,
-				B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */,
 				B6308FDA1FD597F500836F1A /* UIViewController+CYAnimatedTransition.h */,
 				B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */,
-			);
-			path = Animation;
-			sourceTree = "<group>";
-		};
-		B69278501FC2F1D0005E9126 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				B69278491FC2C361005E9126 /* Animation */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -344,7 +352,6 @@
 			files = (
 				B69B5C831FE6A9B200C0CABC /* CYForwardTransition.m in Sources */,
 				B6308FE01FD599B000836F1A /* UIViewController+CYAnimatedTransition.h in Sources */,
-				B6308FE31FD5B05900836F1A /* aViewController.m in Sources */,
 				B69278151FC2C157005E9126 /* ListViewController.m in Sources */,
 				B69278481FC2C35E005E9126 /* CYBaseAnimatedTransition.m in Sources */,
 				B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */,
@@ -353,6 +360,7 @@
 				B692784F1FC2E82D005E9126 /* CYMagicMoveTransition.m in Sources */,
 				B6308FD91FD43A4C00836F1A /* CYMagicMoveInverseTransition.m in Sources */,
 				B69278121FC2C157005E9126 /* AppDelegate.m in Sources */,
+				B69DD0071FE7B7880000BAA3 /* aViewController.m in Sources */,
 				B69278451FC2C2CF005E9126 /* CYNavigationController.m in Sources */,
 				B6308FDC1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m in Sources */,
 				B692784C1FC2C519005E9126 /* DetailViewController.m in Sources */,

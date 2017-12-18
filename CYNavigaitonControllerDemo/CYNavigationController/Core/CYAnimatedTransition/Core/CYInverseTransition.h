@@ -9,8 +9,10 @@
 #import "CYBaseAnimatedTransition.h"
 
 @class CYBaseAnimatedTransition;
-
+ 
 
 @interface CYInverseTransition : CYBaseAnimatedTransition
+
+@property (strong,nonatomic) UIPercentDrivenInteractiveTransition *defaultPopPercentDriven;
 
 @end

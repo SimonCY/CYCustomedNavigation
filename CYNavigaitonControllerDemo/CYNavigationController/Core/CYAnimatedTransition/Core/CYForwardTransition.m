@@ -67,4 +67,15 @@
     return [self.destinationViewDataSource destinationViewForCYAnimatedTransition:self];
 }
 
+- (UIPercentDrivenInteractiveTransition *)percentDrivenTransition {
+    
+    if (self.sourceViewDataSource && [self.sourceViewDataSource respondsToSelector:@selector(percentDrivenForCYForwardTransition:)]) {
+        
+        return [self.sourceViewDataSource percentDrivenForCYForwardTransition:self];
+    } else {
+        
+        return nil;
+    }
+}
+
 @end

@@ -10,6 +10,8 @@
 @class CYForwardTransition;
 
 @interface UIViewController (CYAnimatedTransition) <UINavigationControllerDelegate>
+
+@property (nonatomic,assign,getter=isTransitionCustomed) BOOL transitionCustomed;
  
 - (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition forSourceViewController:(UIViewController *)sourceViewController;
 

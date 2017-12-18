@@ -8,6 +8,10 @@
 
 #import "CYMagicMoveInverseTransition.h"
 
+@interface CYMagicMoveInverseTransition ()
+
+@end
+
 @implementation CYMagicMoveInverseTransition
 
 #pragma mark - cover from super-class

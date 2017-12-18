@@ -26,6 +26,27 @@
 
 #pragma mark - getter
 
+- (UIView *)sourceView {
+    
+    return [self.sourceViewDataSource sourceViewForCYAnimatedTransition:self];
+}
+
+- (UIView *)destinationView {
+    
+    return [self.destinationViewDataSource destinationViewForCYAnimatedTransition:self];
+}
+
+- (UIPercentDrivenInteractiveTransition *)percentDrivenTransition {
+    
+    if (self.sourceViewDataSource && [self.sourceViewDataSource respondsToSelector:@selector(percentDrivenForCYForwardTransition:)]) {
+        
+        return [self.sourceViewDataSource percentDrivenForCYForwardTransition:self];
+    } else {
+        
+        return nil;
+    }
+}
+
 #pragma mark - public
 
 - (void)transitionComplete {

@@ -9,7 +9,7 @@
 #import "ListViewController.h"
 #import "CYAnimatedTransition.h"
 #import "DetailViewController.h"
-#import "aViewController.h"
+
 
 @interface ListViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,CYAnimatedTransitionSourceViewDataSource>
 
@@ -95,7 +95,6 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
         animatedTransition.delegate = detailVC;
         [detailVC setCY_animatedTransition:animatedTransition forSourceViewController:self];
     }
-
 }
 
 #pragma mark - CYAnimatedTransitionDataSource

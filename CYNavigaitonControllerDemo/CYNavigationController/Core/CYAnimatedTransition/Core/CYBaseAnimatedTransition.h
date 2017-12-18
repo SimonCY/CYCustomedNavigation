@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class CYBaseAnimatedTransition;
+@class CYBaseAnimatedTransition,CYInverseTransition,CYForwardTransition;
 
 @protocol CYAnimatedTransitionDelegate <NSObject>
 
+@required
 /*
  * Sycn called before animation, you can add some UIViewAnimation for other view in this method and the UIViewAnimation-task's characteristic ,it would seem like to called asycn.
  */
@@ -21,7 +22,11 @@
 
 @protocol CYAnimatedTransitionSourceViewDataSource <NSObject>
 
+@required
 - (UIView * _Nonnull)sourceViewForCYAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
+
+@optional
+- (UIPercentDrivenInteractiveTransition *_Nullable)percentDrivenForCYForwardTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
 
 @end
 
@@ -29,6 +34,9 @@
 @protocol CYAnimatedTransitionDestinationViewDataSource <NSObject>
 
 - (UIView * _Nonnull)destinationViewForCYAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
+
+@optional
+- (UIPercentDrivenInteractiveTransition *_Nullable)percentDrivenForCYInverseTransition:(CYInverseTransition *_Nullable)animatedTransition;
 
 @end
 
@@ -44,16 +52,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak,nonatomic) id<CYAnimatedTransitionDelegate> delegate;
 
-@property (nonatomic, weak) id <UIViewControllerContextTransitioning> transitionContext;
+@property (weak,nonatomic) id <UIViewControllerContextTransitioning> transitionContext;
 
 /**
  *  Transition Duration, default is 0.6.
  */
-@property (nonatomic, assign, readonly) NSTimeInterval  transitionDuration;
+@property (assign,nonatomic,readonly) NSTimeInterval  transitionDuration;
 
 @property (weak,nonatomic,readonly) UIView * _Nullable sourceView;
 
 @property (weak,nonatomic,readonly) UIView * _Nullable destinationView;
+
+@property (strong,nonatomic,readonly) UIPercentDrivenInteractiveTransition * _Nullable percentDrivenTransition;
 
 /**
  *  From view controller.
