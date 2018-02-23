@@ -93,12 +93,12 @@ void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL newSelecto
                                    animationControllerForOperation:(UINavigationControllerOperation)operation
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC {
-    
-    if ([toVC cy_animatedTransitionForSourceViewController:fromVC]) {
-
+ 
+    if (operation == UINavigationControllerOperationPush) {
+        
         return [toVC cy_animatedTransitionForSourceViewController:fromVC];
-    } else if ([fromVC cy_animatedTransitionForSourceViewController:toVC]) {
-
+    } else if (operation == UINavigationControllerOperationPop) {
+        
         return (id <UIViewControllerAnimatedTransitioning>)[fromVC cy_animatedTransitionForSourceViewController:toVC].inverseTransition;
     } else {
         
