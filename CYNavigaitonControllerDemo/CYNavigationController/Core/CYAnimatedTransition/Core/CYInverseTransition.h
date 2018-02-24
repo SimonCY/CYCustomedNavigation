@@ -9,10 +9,12 @@
 #import "CYBaseAnimatedTransition.h"
 
 @class CYBaseAnimatedTransition;
- 
+
 
 @interface CYInverseTransition : CYBaseAnimatedTransition
 
-@property (strong,nonatomic) UIPercentDrivenInteractiveTransition *defaultPopPercentDriven;
+@property (strong,nonatomic,readonly) UIScreenEdgePanGestureRecognizer *defaultPopGustureRecognizer;
+
+@property (strong,nonatomic,readonly) UIPercentDrivenInteractiveTransition *defaultPopPercentDriven;
 
 @end

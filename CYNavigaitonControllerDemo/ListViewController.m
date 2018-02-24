@@ -93,8 +93,8 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
         animatedTransition.sourceViewDataSource = self;
         animatedTransition.destinationViewDataSource = detailVC;
         animatedTransition.delegate = detailVC;
-        [detailVC setCY_animatedTransition:animatedTransition forSourceViewController:self];
-    }
+        [detailVC setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePush forSourceViewController:self];
+    } 
 }
 
 #pragma mark - CYAnimatedTransitionDataSource

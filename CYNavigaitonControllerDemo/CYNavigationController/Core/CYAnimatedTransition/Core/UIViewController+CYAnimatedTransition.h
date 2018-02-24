@@ -9,11 +9,19 @@
 #import <UIKit/UIKit.h>
 @class CYForwardTransition;
 
-@interface UIViewController (CYAnimatedTransition) <UINavigationControllerDelegate>
+typedef NS_ENUM(NSUInteger, CYAnimatedTransitionControllerShowType) {
+    CYAnimatedTransitionControllerShowTypePresent,
+    CYAnimatedTransitionControllerShowTypePush,
+};
 
-@property (nonatomic,assign,getter=isTransitionCustomed) BOOL transitionCustomed;
+@interface UIViewController (CYAnimatedTransition) <UINavigationControllerDelegate,UIViewControllerTransitioningDelegate>
+
+/**
+ * pravite for recording if the VC's pop animation is customed. So the animator will setter the delegate of navigationController automatic.
+ */
+@property (nonatomic,assign,getter=isPushTransitionCustomed) BOOL pushTransitionCustomed;
  
-- (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition forSourceViewController:(UIViewController *)sourceViewController;
+- (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition withShowType:(CYAnimatedTransitionControllerShowType)showType forSourceViewController:(UIViewController *)sourceViewController;
 
 - (CYForwardTransition *)cy_animatedTransitionForSourceViewController:(UIViewController *)sourceViewController;
 

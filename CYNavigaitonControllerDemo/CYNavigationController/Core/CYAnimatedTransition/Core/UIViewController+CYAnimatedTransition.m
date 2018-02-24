@@ -24,7 +24,7 @@
     
     if (self.navigationController) {
         
-        if (self.transitionCustomed) {
+        if (self.isPushTransitionCustomed) {
             
             self.navigationController.delegate = self;
         } else {
@@ -51,23 +51,39 @@ void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL newSelecto
 
 #pragma - mark - setter
 
-- (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition forSourceViewController:(UIViewController *)sourceViewController {
+- (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition withShowType:(CYAnimatedTransitionControllerShowType)showType forSourceViewController:(UIViewController *)sourceViewController {
 
-    NSAssert((sourceViewController.navigationController != nil), @"fromViewController doesn't have a navigationController");
- 
     if ([self cy_animatedTransitionForSourceViewController:sourceViewController] != cy_animatedTransition) {
 
         objc_setAssociatedObject(self, class_getName([sourceViewController class]),
                                  cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        sourceViewController.navigationController.delegate = self;
-        self.transitionCustomed = YES;
+        
+        switch (showType) {
+            case CYAnimatedTransitionControllerShowTypePush:
+                
+                NSAssert((sourceViewController.navigationController != nil), @"fromViewController doesn't have a navigationController");
+                
+                sourceViewController.navigationController.delegate = self;
+                self.pushTransitionCustomed = YES;
+                break;
+                
+            case CYAnimatedTransitionControllerShowTypePresent:
+                
+                self.transitioningDelegate = sourceViewController;
+                break;
+                
+            default:
+                break;
+        }
+ 
     }
 }
 
-- (void)setTransitionCustomed:(BOOL)transitionCustomed {
+- (void)setPushTransitionCustomed:(BOOL)transitionCustomed {
     
     objc_setAssociatedObject(self, "isSelfADestinationVCForTransition", [NSNumber numberWithBool:transitionCustomed], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
 
 #pragma mark - getter
 
@@ -76,7 +92,7 @@ void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL newSelecto
     return objc_getAssociatedObject(self, class_getName([sourceViewController class]));
 }
 
-- (BOOL)isTransitionCustomed {
+- (BOOL)isPushTransitionCustomed {
     
     if (objc_getAssociatedObject(self, "isSelfADestinationVCForTransition")) {
         
@@ -111,4 +127,27 @@ void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL newSelecto
     
     return ((CYBaseAnimatedTransition *)animationController).percentDrivenTransition;
 }
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    
+    return [presented cy_animatedTransitionForSourceViewController:source];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    
+    return (id <UIViewControllerAnimatedTransitioning>)[dismissed cy_animatedTransitionForSourceViewController:(UIViewController *)dismissed.transitioningDelegate].inverseTransition;
+}
+
+- (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator {
+    
+    return ((CYBaseAnimatedTransition *)animator).percentDrivenTransition;
+}
+
+- (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator {
+    
+    return ((CYBaseAnimatedTransition *)animator).percentDrivenTransition;
+}
+
 @end

@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CYNavigaitonControllerDemo/CYNavigationController/Core/CYAnimatedTransition/Core/CYInverseTransition.m"
-            timestampString = "535286282.245363"
+            filePath = "CYNavigaitonControllerDemo/DetailViewController.m"
+            timestampString = "541138569.44932"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-topViewController"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "-CYAnimatedTransitionStartAnimatingWithAnimatedTransition:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

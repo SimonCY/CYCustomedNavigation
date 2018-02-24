@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CYAnimatedTransition.h"
 
-@interface ThirdViewController : UIViewController
+@interface ThirdViewController : UIViewController<CYAnimatedTransitionDestinationViewDataSource>
 
 @end

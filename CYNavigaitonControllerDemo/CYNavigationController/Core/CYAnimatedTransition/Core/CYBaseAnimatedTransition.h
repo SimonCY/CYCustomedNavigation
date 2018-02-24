@@ -12,7 +12,7 @@
 
 @protocol CYAnimatedTransitionDelegate <NSObject>
 
-@required
+@optional
 /*
  * Sycn called before animation, you can add some UIViewAnimation for other view in this method and the UIViewAnimation-task's characteristic ,it would seem like to called asycn.
  */
@@ -33,6 +33,7 @@
 
 @protocol CYAnimatedTransitionDestinationViewDataSource <NSObject>
 
+@required
 - (UIView * _Nonnull)destinationViewForCYAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
 
 @optional

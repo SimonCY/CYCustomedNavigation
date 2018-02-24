@@ -16,11 +16,11 @@
     if (self = [super init]) {
         
         //setup defaultPopPercentDriven
-        UIScreenEdgePanGestureRecognizer *edgePanGestureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(edgePanGesture:)];
+        _defaultPopGustureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(edgePanGesture:)];
         
         //设置从什么边界滑入
-        edgePanGestureRecognizer.edges = UIRectEdgeLeft;
-        [[UIApplication sharedApplication].keyWindow addGestureRecognizer:edgePanGestureRecognizer];
+        ((UIScreenEdgePanGestureRecognizer *)_defaultPopGustureRecognizer).edges = UIRectEdgeLeft;
+        [[UIApplication sharedApplication].keyWindow addGestureRecognizer:_defaultPopGustureRecognizer];
     }
     return self;
 }
@@ -35,21 +35,30 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         
-        self.defaultPopPercentDriven = [[UIPercentDrivenInteractiveTransition alloc]init];
-        [[self fetchTopViewController].navigationController popViewControllerAnimated:YES];
+        _defaultPopPercentDriven = [[UIPercentDrivenInteractiveTransition alloc]init];
+        
+        UIViewController *currentVC = [self fetchTopViewController];
+ 
+        if (currentVC.navigationController) {
+            
+            [currentVC.navigationController popViewControllerAnimated:YES];
+        } else {
+            
+            [currentVC dismissViewControllerAnimated:YES completion:nil];
+        }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
         
-        [self.defaultPopPercentDriven updateInteractiveTransition:progress];
+        [_defaultPopPercentDriven updateInteractiveTransition:progress];
     } else if (recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded) {
  
         if (progress > 0.3) {
             
-            [self.defaultPopPercentDriven finishInteractiveTransition];
+            [_defaultPopPercentDriven finishInteractiveTransition];
         } else {
             
             [_defaultPopPercentDriven cancelInteractiveTransition];
         }
-        self.defaultPopPercentDriven = nil;
+        _defaultPopPercentDriven = nil;
     }
 }
 
@@ -92,7 +101,7 @@
 }
 
 - (UIPercentDrivenInteractiveTransition *)percentDrivenTransition {
-    
+
     if (self.destinationViewDataSource && [self.destinationViewDataSource respondsToSelector:@selector(percentDrivenForCYInverseTransition:)]) {
         
         return [self.destinationViewDataSource percentDrivenForCYInverseTransition:self];

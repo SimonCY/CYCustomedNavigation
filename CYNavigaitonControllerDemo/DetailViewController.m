@@ -7,10 +7,10 @@
 //
 
 #import "DetailViewController.h"
-#import "CYMagicMoveInverseTransition.h"
 #import "ThirdViewController.h"
 
-@interface DetailViewController ()
+
+@interface DetailViewController ()<CYAnimatedTransitionSourceViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -33,7 +33,20 @@
     [self performSegueWithIdentifier:@"push" sender:nil];
 }
 
-#pragma mark - CYMagicMoveTransitionDataSource
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    
+    ThirdViewController *detailVC = segue.destinationViewController;
+ 
+    CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
+    animatedTransition.sourceViewDataSource = self;
+    animatedTransition.destinationViewDataSource = detailVC;
+    [detailVC setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:self];
+}
+
+
+#pragma mark - CYMagicMoveTransitionDestinationViewDataSource
 
 - (UIView *)destinationViewForCYAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransitio {
 
@@ -56,4 +69,10 @@
     } completion:nil];
 }
 
+#pragma mark - CYMagicMoveTransitionSourceViewDataSource
+
+- (UIView *)sourceViewForCYAnimatedTransition:(CYBaseAnimatedTransition *)animatedTransition {
+    
+    return self.imageView;
+}
 @end

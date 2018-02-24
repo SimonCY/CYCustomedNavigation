@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CYMagicMoveTransition.h"
+#import "CYAnimatedTransition.h"
 
 @interface DetailViewController : UIViewController <CYAnimatedTransitionDestinationViewDataSource,CYAnimatedTransitionDelegate>
 
