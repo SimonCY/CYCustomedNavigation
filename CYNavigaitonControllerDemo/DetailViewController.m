@@ -25,7 +25,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapped:)];
     [self.imageView addGestureRecognizer:tap];
 }
-
+ 
 #pragma mark - touch
 
 - (void)imageViewTapped:(UITapGestureRecognizer *)tap {
