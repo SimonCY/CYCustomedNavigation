@@ -41,6 +41,9 @@
   
   //navBar
   self.navBar = [[UINavigationBar alloc] init];
+  if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+      self.navBar.translucent = NO;
+  }
   [self addSubview:self.navBar];
   
   //items container
