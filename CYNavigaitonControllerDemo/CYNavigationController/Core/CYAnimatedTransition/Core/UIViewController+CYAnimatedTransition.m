@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "CYForwardTransition.h"
 #import "CYInverseTransition.h"
+#import "CYPushTransition.h"
 
 @implementation UIViewController (CYAnimatedTransition)
 
@@ -49,12 +50,31 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
     }
 }
 
-#pragma - mark - setter
+#pragma mark - public
+
+- (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated {
+    
+    UIViewController *topVC = [UIViewController fetchTopViewController];
+    if (topVC) {
+        
+        CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
+        [self setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:topVC];
+        [topVC presentViewController:self animated:animated completion:nil];
+    }
+}
+
++ (UIViewController *)fetchTopViewController {
+    
+    UIViewController *resultVC;
+    resultVC = [self topViewControllerOfViewController:[[UIApplication sharedApplication].keyWindow rootViewController]];
+    
+    return resultVC;
+}
 
 - (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition withShowType:(CYAnimatedTransitionControllerShowType)showType forSourceViewController:(UIViewController *)sourceViewController {
-
+    
     if ([self cy_animatedTransitionForSourceViewController:sourceViewController] != cy_animatedTransition) {
-
+        
         objc_setAssociatedObject(self, class_getName([sourceViewController class]),
                                  cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
@@ -75,9 +95,36 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
             default:
                 break;
         }
- 
+        
     }
 }
+
+- (CYForwardTransition *)cy_animatedTransitionForSourceViewController:(UIViewController *)sourceViewController {
+    
+    return objc_getAssociatedObject(self, class_getName([sourceViewController class]));
+}
+
+#pragma mark - pravite
+
++ (UIViewController *)topViewControllerOfViewController:(UIViewController *)vc {
+    
+    if ([vc isKindOfClass:[UINavigationController class]]) {
+        
+        return [self topViewControllerOfViewController:[(UINavigationController *)vc topViewController]];
+    } else if ([vc isKindOfClass:[UITabBarController class]]) {
+        
+        return [self topViewControllerOfViewController:[(UITabBarController *)vc selectedViewController]];
+        
+    } else if (vc.presentedViewController) {
+        
+        return [self topViewControllerOfViewController:vc.presentedViewController];
+    } else {
+        
+        return vc;
+    }
+}
+
+#pragma - mark - setter
 
 - (void)setPushTransitionCustomed:(BOOL)transitionCustomed {
     
@@ -86,11 +133,6 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 
 #pragma mark - getter
-
-- (CYForwardTransition *)cy_animatedTransitionForSourceViewController:(UIViewController *)sourceViewController {
-
-    return objc_getAssociatedObject(self, class_getName([sourceViewController class]));
-}
 
 - (BOOL)isPushTransitionCustomed {
     

@@ -28,7 +28,14 @@
     UITapGestureRecognizer *tapText = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped:)];
     [self.textView addGestureRecognizer:tapText];
 }
- 
+
+- (void)viewDidDisappear:(BOOL)animated {
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+}
 #pragma mark - touch
 
 - (void)imageViewTapped:(UITapGestureRecognizer *)tap {
@@ -39,15 +46,15 @@
 - (void)textViewTapped:(UITapGestureRecognizer *)tap {
     
     aViewController *vc = [[aViewController alloc] init];
-    CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
-    [vc setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:self];
-    [self presentViewController:vc animated:YES completion:nil];
+//    CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
+//    [vc setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:self];
+//    [self presentViewController:vc animated:YES completion:nil];
+    [vc cy_presentFromTopViewControllerWithAnimated:YES];
 }
 
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    
+ 
     ThirdViewController *detailVC = segue.destinationViewController;
  
     CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];

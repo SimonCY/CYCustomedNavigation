@@ -25,4 +25,8 @@ typedef NS_ENUM(NSUInteger, CYAnimatedTransitionControllerShowType) {
 
 - (CYForwardTransition *)cy_animatedTransitionForSourceViewController:(UIViewController *)sourceViewController;
 
+- (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated;
+
++ (UIViewController *)fetchTopViewController;
+
 @end

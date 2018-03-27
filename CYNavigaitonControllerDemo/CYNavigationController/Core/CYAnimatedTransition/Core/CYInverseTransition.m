@@ -9,6 +9,7 @@
 #import "CYInverseTransition.h"
 #import "CYForwardTransition.h"
 #import "CYBaseAnimatedTransition.h"
+#import "UIViewController+CYAnimatedTransition.h"
 
 @implementation CYInverseTransition
 
@@ -38,7 +39,7 @@
         
         _defaultPopPercentDriven = [[UIPercentDrivenInteractiveTransition alloc]init];
         
-        UIViewController *currentVC = [self fetchTopViewController];
+        UIViewController *currentVC = [UIViewController fetchTopViewController];
  
         if (currentVC.navigationController) {
             
@@ -60,32 +61,6 @@
             [_defaultPopPercentDriven cancelInteractiveTransition];
         }
         _defaultPopPercentDriven = nil;
-    }
-}
-
-- (UIViewController *)fetchTopViewController {
-    
-    UIViewController *resultVC;
-    resultVC = [self topViewControllerOfViewController:[[UIApplication sharedApplication].keyWindow rootViewController]];
-
-    return resultVC;
-}
-
-- (UIViewController *)topViewControllerOfViewController:(UIViewController *)vc {
- 
-    if ([vc isKindOfClass:[UINavigationController class]]) {
-        
-        return [self topViewControllerOfViewController:[(UINavigationController *)vc topViewController]];
-    } else if ([vc isKindOfClass:[UITabBarController class]]) {
-        
-        return [self topViewControllerOfViewController:[(UITabBarController *)vc selectedViewController]];
-        
-    } else if (vc.presentedViewController) {
-        
-        return [self topViewControllerOfViewController:vc.presentedViewController];
-    } else {
-        
-        return vc;
     }
 }
 
