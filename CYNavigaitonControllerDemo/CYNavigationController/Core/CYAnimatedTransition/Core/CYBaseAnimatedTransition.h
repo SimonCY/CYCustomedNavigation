@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Transition Duration, default is 0.6.
  */
-@property (assign,nonatomic,readonly) NSTimeInterval  transitionDuration;
+@property (assign,nonatomic) NSTimeInterval  transitionDuration;
 
 @property (weak,nonatomic,readonly) UIView * _Nullable sourceView;
 
@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, weak) UIView *containerView;
 
 /**
- *  Animate Transition's implementation. Recover it in animatedTransition's subclass.
+ *  Animate Transition's implementation. Recover it in animatedTransition's subclass. Use 
  */
 - (void)animateTransition;
 

@@ -116,7 +116,7 @@
                                     <constraint firstAttribute="width" secondItem="S3u-G7-8ve" secondAttribute="height" multiplier="690:1004" id="QnM-Bd-7gy"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4K7-MX-peX">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu. " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4K7-MX-peX">
                                 <rect key="frame" x="16" y="601" width="343" height="66"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

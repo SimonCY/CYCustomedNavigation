@@ -8,11 +8,6 @@
 
 #import "ACCustomedNavigationBar.h"
 
-#define cy_NavbarHeight        44
-#define cy_customNavbarHeight  (cy_NavbarHeight + cy_StatusBarHeight)
-#define cy_StatusBarHeight     [[UIApplication sharedApplication] statusBarFrame].size.height
-
-#define ACPresentedViewNavigationBarDefaultBarTintColor [UIColor colorWithWhite:246 / 255.0 alpha:1]
 @interface ACCustomedNavigationBar ()
 
 @property (nonatomic, strong) UINavigationBar *navBar;

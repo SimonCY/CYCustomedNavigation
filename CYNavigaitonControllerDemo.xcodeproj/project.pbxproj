@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		B6308FD91FD43A4C00836F1A /* CYMagicMoveInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */; };
 		B6308FDC1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */; };
-		B6308FE01FD599B000836F1A /* UIViewController+CYAnimatedTransition.h in Sources */ = {isa = PBXBuildFile; fileRef = B6308FDA1FD597F500836F1A /* UIViewController+CYAnimatedTransition.h */; };
 		B63FADC21FE6E58E00C04C6A /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63FADC11FE6E58E00C04C6A /* ThirdViewController.m */; };
+		B64749592069EA10002CB3E7 /* CYPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B64749582069EA10002CB3E7 /* CYPushTransition.m */; };
+		B647495C2069EA21002CB3E7 /* CYPushInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B647495B2069EA21002CB3E7 /* CYPushInverseTransition.m */; };
 		B678CD1C20529BF2004AC5A9 /* ACCustomedNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B678CD1920529BF2004AC5A9 /* ACCustomedNavigationBar.m */; };
 		B678CD1D20529BF2004AC5A9 /* UIViewController+ACCustomedNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B678CD1B20529BF2004AC5A9 /* UIViewController+ACCustomedNavigationBar.m */; };
 		B678CD2020529DA3004AC5A9 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B678CD1E20529DA3004AC5A9 /* UIBarButtonItem+Extension.m */; };
@@ -55,6 +56,10 @@
 		B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYAnimatedTransition.m"; sourceTree = "<group>"; };
 		B63FADC01FE6E58E00C04C6A /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		B63FADC11FE6E58E00C04C6A /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		B64749572069EA10002CB3E7 /* CYPushTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYPushTransition.h; sourceTree = "<group>"; };
+		B64749582069EA10002CB3E7 /* CYPushTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYPushTransition.m; sourceTree = "<group>"; };
+		B647495A2069EA21002CB3E7 /* CYPushInverseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYPushInverseTransition.h; sourceTree = "<group>"; };
+		B647495B2069EA21002CB3E7 /* CYPushInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYPushInverseTransition.m; sourceTree = "<group>"; };
 		B678CD1820529BF2004AC5A9 /* ACCustomedNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCustomedNavigationBar.h; sourceTree = "<group>"; };
 		B678CD1920529BF2004AC5A9 /* ACCustomedNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCustomedNavigationBar.m; sourceTree = "<group>"; };
 		B678CD1A20529BF2004AC5A9 /* UIViewController+ACCustomedNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ACCustomedNavigationBar.h"; sourceTree = "<group>"; };
@@ -212,6 +217,10 @@
 				B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */,
 				B6308FD71FD43A4C00836F1A /* CYMagicMoveInverseTransition.h */,
 				B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */,
+				B64749572069EA10002CB3E7 /* CYPushTransition.h */,
+				B64749582069EA10002CB3E7 /* CYPushTransition.m */,
+				B647495A2069EA21002CB3E7 /* CYPushInverseTransition.h */,
+				B647495B2069EA21002CB3E7 /* CYPushInverseTransition.m */,
 			);
 			path = CYAnimatedTransition;
 			sourceTree = "<group>";
@@ -375,8 +384,8 @@
 			files = (
 				B69B5C831FE6A9B200C0CABC /* CYForwardTransition.m in Sources */,
 				B678CD1C20529BF2004AC5A9 /* ACCustomedNavigationBar.m in Sources */,
-				B6308FE01FD599B000836F1A /* UIViewController+CYAnimatedTransition.h in Sources */,
 				B69278151FC2C157005E9126 /* ListViewController.m in Sources */,
+				B64749592069EA10002CB3E7 /* CYPushTransition.m in Sources */,
 				B69278481FC2C35E005E9126 /* CYBaseAnimatedTransition.m in Sources */,
 				B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */,
 				B63FADC21FE6E58E00C04C6A /* ThirdViewController.m in Sources */,
@@ -386,6 +395,7 @@
 				B678CD1D20529BF2004AC5A9 /* UIViewController+ACCustomedNavigationBar.m in Sources */,
 				B678CD2020529DA3004AC5A9 /* UIBarButtonItem+Extension.m in Sources */,
 				B69278121FC2C157005E9126 /* AppDelegate.m in Sources */,
+				B647495C2069EA21002CB3E7 /* CYPushInverseTransition.m in Sources */,
 				B69DD0071FE7B7880000BAA3 /* aViewController.m in Sources */,
 				B69278451FC2C2CF005E9126 /* CYNavigationController.m in Sources */,
 				B6308FDC1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m in Sources */,

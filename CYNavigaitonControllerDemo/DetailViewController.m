@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "ThirdViewController.h"
+#import "aViewController.h"
 
 
 @interface DetailViewController ()<CYAnimatedTransitionSourceViewDataSource>
@@ -22,8 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapped:)];
-    [self.imageView addGestureRecognizer:tap];
+    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapped:)];
+    [self.imageView addGestureRecognizer:tapImage];
+    UITapGestureRecognizer *tapText = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped:)];
+    [self.textView addGestureRecognizer:tapText];
 }
  
 #pragma mark - touch
@@ -31,6 +34,14 @@
 - (void)imageViewTapped:(UITapGestureRecognizer *)tap {
 
     [self performSegueWithIdentifier:@"push" sender:nil];
+}
+
+- (void)textViewTapped:(UITapGestureRecognizer *)tap {
+    
+    aViewController *vc = [[aViewController alloc] init];
+    CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
+    [vc setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:self];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - segue

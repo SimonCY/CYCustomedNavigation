@@ -41,14 +41,31 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CYNavigaitonControllerDemo/DetailViewController.m"
-            timestampString = "541141038.295998"
+            filePath = "CYNavigaitonControllerDemo/CYNavigationController/Core/CYAnimatedTransition/CYPushInverseTransition.m"
+            timestampString = "543819331.132691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "DetailViewController"
-            landmarkType = "3">
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-animateTransition"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            condition = "finished == NO"
+            continueAfterRunningActions = "No"
+            filePath = "CYNavigaitonControllerDemo/CYNavigationController/Core/CYAnimatedTransition/CYPushInverseTransition.m"
+            timestampString = "543819331.132746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-animateTransition"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

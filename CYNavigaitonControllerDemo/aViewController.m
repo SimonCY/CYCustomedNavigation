@@ -7,6 +7,7 @@
 //
 
 #import "aViewController.h"
+#import "ACCustomedNavigationBar.h"
 
 @interface aViewController ()
 
@@ -17,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.navBar = [[ACCustomedNavigationBar alloc] init];
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

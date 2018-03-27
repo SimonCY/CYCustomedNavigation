@@ -8,10 +8,12 @@
 
 #import "CYBaseAnimatedTransition.h"
 
-@class CYBaseAnimatedTransition;
+@class CYBaseAnimatedTransition,CYForwardTransition;
 
 
 @interface CYInverseTransition : CYBaseAnimatedTransition
+
+@property (nonatomic, weak) CYForwardTransition *forwardTransition;
 
 @property (strong,nonatomic,readonly) UIScreenEdgePanGestureRecognizer *defaultPopGustureRecognizer;
 

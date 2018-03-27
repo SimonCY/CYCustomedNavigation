@@ -36,7 +36,7 @@
     [self cy_viewWillAppear:animated];
 }
 
-void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL newSelector) {
+static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL newSelector) {
     
     Method originalMethod = class_getInstanceMethod(class, originalSelector);
     Method newMethod = class_getInstanceMethod(class, newSelector);

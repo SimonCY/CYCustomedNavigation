@@ -11,5 +11,6 @@
 #import "CYMagicMoveInverseTransition.h"
 #import "UIViewController+CYAnimatedTransition.h"
 
-
+#import "CYPushTransition.h"
+#import "CYPushInverseTransition.h"
 
