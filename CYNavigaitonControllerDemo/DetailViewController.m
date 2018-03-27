@@ -29,13 +29,7 @@
     [self.textView addGestureRecognizer:tapText];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    
-}
+ 
 #pragma mark - touch
 
 - (void)imageViewTapped:(UITapGestureRecognizer *)tap {
@@ -48,6 +42,7 @@
     aViewController *vc = [[aViewController alloc] init];
 //    CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
 //    [vc setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:self];
+//    [self presentViewController:vc animated:YES completion:nil];
 //    [self presentViewController:vc animated:YES completion:nil];
     [vc cy_presentFromTopViewControllerWithAnimated:YES];
 }

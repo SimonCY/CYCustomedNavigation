@@ -23,6 +23,12 @@
 
 - (void)cy_viewWillAppear:(BOOL)animated {
     
+    if (self.isPresentTransitionCustomed) {
+        
+    } else {
+        
+    }
+ 
     if (self.navigationController) {
         
         if (self.isPushTransitionCustomed) {
@@ -88,14 +94,13 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
                 break;
                 
             case CYAnimatedTransitionControllerShowTypePresent:
-                
                 self.transitioningDelegate = sourceViewController;
+                self.presentTransitionCustomed = YES;
                 break;
                 
             default:
                 break;
         }
-        
     }
 }
 
@@ -123,12 +128,17 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
         return vc;
     }
 }
-
+    
 #pragma - mark - setter
 
 - (void)setPushTransitionCustomed:(BOOL)transitionCustomed {
     
-    objc_setAssociatedObject(self, "isSelfADestinationVCForTransition", [NSNumber numberWithBool:transitionCustomed], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, "isSelfADestinationVCForCustomPushTransition", [NSNumber numberWithBool:transitionCustomed], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)setPresentTransitionCustomed:(BOOL)presentTransitionCustomed{
+    
+    objc_setAssociatedObject(self, "isSelfADestinationVCForCustomPresentTransition", [NSNumber numberWithBool:presentTransitionCustomed], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
@@ -136,9 +146,20 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 - (BOOL)isPushTransitionCustomed {
     
-    if (objc_getAssociatedObject(self, "isSelfADestinationVCForTransition")) {
+    if (objc_getAssociatedObject(self, "isSelfADestinationVCForCustomPushTransition")) {
         
-        return [objc_getAssociatedObject(self, "isSelfADestinationVCForTransition") boolValue];
+        return [objc_getAssociatedObject(self, "isSelfADestinationVCForCustomPushTransition") boolValue];
+    } else {
+        
+        return NO;
+    }
+}
+
+- (BOOL)isPresentTransitionCustomed {
+    
+    if (objc_getAssociatedObject(self, "isSelfADestinationVCForCustomPresentTransition")) {
+        
+        return [objc_getAssociatedObject(self, "isSelfADestinationVCForCustomPresentTransition") boolValue];
     } else {
         
         return NO;

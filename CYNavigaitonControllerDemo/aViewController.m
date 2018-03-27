@@ -8,6 +8,8 @@
 
 #import "aViewController.h"
 #import "ACCustomedNavigationBar.h"
+#import "bViewController.h"
+#import "CYAnimatedTransition.h"
 
 @interface aViewController ()
 
@@ -24,22 +26,26 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+//    static BOOL jump = YES;
+//    if (jump) {
+//        jump = NO;
+//    }
+}
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self dismissViewControllerAnimated:NO completion:nil];
+            bViewController *b = [[bViewController alloc] init];
+            [b cy_presentFromTopViewControllerWithAnimated:YES];
+    
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)viewDidDisappear:(BOOL)animated {
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    
-}
+ 
 /*
 #pragma mark - Navigation
 

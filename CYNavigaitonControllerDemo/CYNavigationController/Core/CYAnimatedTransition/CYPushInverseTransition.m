@@ -39,7 +39,7 @@ static const CGFloat CYPushTransitionShadowWidth = 5;
     
     //Start animating.
     [self.containerView insertSubview:self.destinationViewController.view belowSubview:self.sourceViewController.view];
-    [self.destinationViewController.view addSubview:shadowView];
+    [self.containerView insertSubview:shadowView belowSubview:self.sourceViewController.view];
     [self.containerView layoutIfNeeded];
     
     [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0 options:UIViewAnimationOptionCurveLinear animations:^{

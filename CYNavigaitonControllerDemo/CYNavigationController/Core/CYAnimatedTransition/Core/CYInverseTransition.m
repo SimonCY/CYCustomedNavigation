@@ -13,6 +13,11 @@
 
 @implementation CYInverseTransition
 
+- (void)dealloc {
+    
+    [[UIApplication sharedApplication].keyWindow removeGestureRecognizer:_defaultPopGustureRecognizer];
+}
+
 - (instancetype)init {
     
     if (self = [super init]) {
@@ -26,7 +31,7 @@
     }
     return self;
 }
-
+ 
 #pragma mark - pravite
 
 - (void)edgePanGesture:(UIScreenEdgePanGestureRecognizer *)recognizer {

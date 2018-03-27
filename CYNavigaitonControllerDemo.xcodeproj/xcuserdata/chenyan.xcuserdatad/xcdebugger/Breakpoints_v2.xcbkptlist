@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CYNavigaitonControllerDemo/DetailViewController.m"
-            timestampString = "543824806.033506"
+            filePath = "CYNavigaitonControllerDemo/CYNavigationController/Core/CYAnimatedTransition/Core/UIViewController+CYAnimatedTransition.m"
+            timestampString = "543830743.3709379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-viewDidDisappear:"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-animationControllerForPresentedController:presentingController:sourceController:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,29 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CYNavigaitonControllerDemo/DetailViewController.m"
-            timestampString = "543824806.033811"
+            filePath = "CYNavigaitonControllerDemo/CYNavigationController/Core/CYAnimatedTransition/Core/UIViewController+CYAnimatedTransition.m"
+            timestampString = "543830743.371008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CYNavigaitonControllerDemo/aViewController.m"
-            timestampString = "543824806.034007"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-viewDidDisappear:"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-animationControllerForDismissedController:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +74,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CYNavigaitonControllerDemo/aViewController.m"
-            timestampString = "543824806.034052"
+            timestampString = "543830743.371067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-viewDidAppear:"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-touchesBegan:withEvent:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CYNavigaitonControllerDemo/CYNavigationController/Core/CYAnimatedTransition/CYPushInverseTransition.m"
+            timestampString = "543830743.371116"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-percentDrivenTransition"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

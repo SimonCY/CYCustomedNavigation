@@ -20,6 +20,8 @@ typedef NS_ENUM(NSUInteger, CYAnimatedTransitionControllerShowType) {
  * pravite for recording if the VC's pop animation is customed. So the animator will setter the delegate of navigationController automatic.
  */
 @property (nonatomic,assign,getter=isPushTransitionCustomed) BOOL pushTransitionCustomed;
+
+@property (nonatomic,assign,getter=isPresentTransitionCustomed) BOOL presentTransitionCustomed;
  
 - (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition withShowType:(CYAnimatedTransitionControllerShowType)showType forSourceViewController:(UIViewController *)sourceViewController;
 
