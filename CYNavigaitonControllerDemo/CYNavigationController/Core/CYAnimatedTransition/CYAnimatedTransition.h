@@ -7,9 +7,10 @@
 //
 
 #import "CYBaseAnimatedTransition.h"
+#import "UIViewController+CYAnimatedTransition.h"
+
 #import "CYMagicMoveTransition.h"
 #import "CYMagicMoveInverseTransition.h"
-#import "UIViewController+CYAnimatedTransition.h"
 
 #import "CYPushTransition.h"
 #import "CYPushInverseTransition.h"
