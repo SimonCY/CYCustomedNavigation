@@ -1,7 +1,11 @@
 ![这里写图片描述](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/logo.png)
 
 
-![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)&nbsp; ![Support](https://img.shields.io/badge/support-iOS%208%2B-orange.svg)&nbsp;![Support](https://img.shields.io/badge/support-iPhoneX-ff69b4.svg)&nbsp;
+## What is CYNavigationController ?
+![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)&nbsp; 
+![License MIT](https://img.shields.io/badge/support-iOS%208%2B-orange.svg)&nbsp; 
+![License MIT](https://img.shields.io/badge/support-iPhoneX-ff69b4.svg)&nbsp; 
+ 
 
 #### CYNavigationControllerSDK包含两部分：
  
@@ -17,7 +21,7 @@
 
 
 ------------------------------------------------------
-## example
+## Example
  
  ![Support](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/screenshot.gif)
  　<center>动画效果示例</center>
@@ -25,7 +29,7 @@
 
 ## Usage
 
-## expansion
+## Expansion
 
  
 #### 1.单个使用
