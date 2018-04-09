@@ -26,10 +26,10 @@
 <div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/screenshot.gif"/></div>
 
 
-<div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_present.jpeg"/></div>
+<div align=center><img width="700" height="315" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_present.jpeg"/></div>
 
 
-<div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_push.jpeg"/></div>
+<div align=center><img width="700" height="30" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_push.jpeg"/></div>
  
 
 ## Usage
