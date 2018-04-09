@@ -25,12 +25,12 @@
  
 <div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/screenshot.gif"/></div>
 
-![Support](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_present.jpeg)
+
+<div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_present.jpeg"/></div>
+
+
+<div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_push.jpeg"/></div>
  
-  
-![Support](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_push.jpeg)
- 　<center>push</center>
-结构图
 
 ## Usage
 
