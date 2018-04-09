@@ -1,8 +1,10 @@
 ![这里写图片描述](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/logo.png)
 
+
+![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)&nbsp; ![Support](https://img.shields.io/badge/support-iOS%208%2B-orange.svg)&nbsp;![Support](https://img.shields.io/badge/support-iPhoneX-ff69b4.svg)&nbsp;
+
 #### CYNavigationControllerSDK包含两部分：
-
-
+ 
 * CYCustomedNavigationBar
 
 &emsp;&emsp;CYCustomNavigationBar可以让你在不适用UINavigationController时在ViewController中仍然拥有一个独立管理的NavigationBar。
@@ -12,8 +14,7 @@
 &emsp;&emsp;CYAnimatedTransition是一个可拓展的转场动画库，动画对象同时适用于Push和Present两种新页面显示模式。随SDK附赠一对“神奇效果”的动画，一对模仿系统Push的动画。
 
 
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/AAChartModel/AAChartKit/blob/master/AAChartKit/ChartsDemo/LICENSE)&nbsp;
-[![Support](https://img.shields.io/badge/support-iOS%208%2B-ff69b4.svg)](https://www.apple.com/nl/ios/)&nbsp;
+
 
 ------------------------------------------------------
 ## example
