@@ -1,16 +1,16 @@
-![这里写图片描述](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/logo.PNG)
+![这里写图片描述](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/logo.png)
 
 #### 蒙版模式的新手引导提示，可单独使用，也可以创建蒙版队列，连环使用。
 
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/AAChartModel/AAChartKit/blob/master/AAChartKit/ChartsDemo/LICENSE)&nbsp;
-[![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
+[![Support](https://img.shields.io/badge/support-iOS%208%2B-ff69b4.svg)](https://www.apple.com/nl/ios/)&nbsp;
 
 ------------------------------------------------------
 ## Usage
 
 #### 可以设置蒙版类型为半透明或者模糊，露出区域可以设置为圆角矩形或者椭圆。
 
-![这里写图片描述](https://github.com/SimonCY/CYNavigaitonController/raw/master/screenshot.gif) ![这里写图片描述](https://github.com/SimonCY/CYPromptCoverTest/raw/master/Img/IMG_7213.PNG) ![这里写图片描述](https://github.com/SimonCY/CYPromptCoverTest/raw/master/Img/IMG_7214.PNG)
+![这里写图片描述](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/screenshot.gif) ![这里写图片描述](https://github.com/SimonCY/CYPromptCoverTest/raw/master/Img/IMG_7213.PNG) ![这里写图片描述](https://github.com/SimonCY/CYPromptCoverTest/raw/master/Img/IMG_7214.PNG)
 
 #### 可以设置提示出现在不同的位置。
 
