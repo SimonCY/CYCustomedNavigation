@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ACCustomedNavigationBar;
+@class CYCustomedNavigationBar;
 
-@interface UIViewController (ACCustomedNavigationBar)
+@interface UIViewController (CYCustomedNavigationBar)
 
-@property (nonatomic, strong) ACCustomedNavigationBar *navBar;
+@property (nonatomic, strong) CYCustomedNavigationBar *cy_navigationBar;
 
 @end

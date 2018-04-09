@@ -6,15 +6,18 @@
 //  Copyright © 2018年 Facebook. All rights reserved.
 //
 
-#import "ACCustomedNavigationBar.h"
+#import "CYCustomedNavigationBar.h"
 
-@interface ACCustomedNavigationBar ()
+#define CYPresentedViewNavigationBarDefaultBarTintColor [UIColor colorWithWhite:246 / 255.0 alpha:1]
+#define CYPresentedViewNavigationBarDefaultTitleColor [UIColor darkTextColor]
+
+@interface CYCustomedNavigationBar ()
 
 @property (nonatomic, strong) UINavigationBar *navBar;
- 
+
 @end
 
-@implementation ACCustomedNavigationBar
+@implementation CYCustomedNavigationBar
 
 #pragma mark - system
 
@@ -37,16 +40,17 @@
   //navBar
   self.navBar = [[UINavigationBar alloc] init];
   if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
-      self.navBar.translucent = NO;
+    self.navBar.translucent = NO;
   }
   [self addSubview:self.navBar];
-  
+ 
   //items container
   self.navigationItem = [[UINavigationItem alloc] init];
   [self.navBar pushNavigationItem:self.navigationItem animated:NO];
  
   //defaultData
-  self.barTintColor = ACPresentedViewNavigationBarDefaultBarTintColor;
+  self.barTintColor = CYPresentedViewNavigationBarDefaultBarTintColor;
+  self.titleColor = CYPresentedViewNavigationBarDefaultTitleColor;
   self.shadowHidden = NO;
 }
 
@@ -54,18 +58,15 @@
   [super layoutSubviews];
   
   self.frame = CGRectMake(0, 0, self.superview.bounds.size.width, cy_customNavbarHeight);
-  
-  self.navBar.frame = CGRectMake(0, cy_StatusBarHeight, self.superview.bounds.size.width, cy_NavbarHeight);
+  self.navBar.frame = CGRectMake(0, cy_StatusBarHeight, self.bounds.size.width, cy_NavbarHeight);
 }
-
 
 #pragma mark - touch
 
 //过滤掉触摸事件
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
+  
 }
-
 
 #pragma mark - setter
 
@@ -80,6 +81,30 @@
   
   self.navBar.barTintColor = barTintColor;
   self.backgroundColor = barTintColor;
+  
+  if (barTintColor == [UIColor clearColor]) {
+    
+    [self.navBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+      self.navBar.translucent = YES;
+    }
+  } else {
+    [self.navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+      self.navBar.translucent = NO;
+    }
+  }
+}
+
+- (void)setTitleColor:(UIColor *)titleColor {
+  NSAssert([titleColor isKindOfClass:[UIColor class]], @"titleColor is not a UIColor class");
+  NSAssert(titleColor != nil, @"titleColor can not be nil");
+ 
+  _titleColor = titleColor;
+  
+  NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+  textAttrs[NSForegroundColorAttributeName] = titleColor;
+  [self.navBar setTitleTextAttributes:textAttrs];
 }
 
 

@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class CYForwardTransition;
-
-typedef NS_ENUM(NSUInteger, CYAnimatedTransitionControllerShowType) {
-    CYAnimatedTransitionControllerShowTypePresent,
-    CYAnimatedTransitionControllerShowTypePush,
-};
-
+ 
 @interface UIViewController (CYAnimatedTransition) <UINavigationControllerDelegate,UIViewControllerTransitioningDelegate>
 
 /**
@@ -23,12 +18,19 @@ typedef NS_ENUM(NSUInteger, CYAnimatedTransitionControllerShowType) {
 
 @property (nonatomic,assign,getter=isPresentTransitionCustomed) BOOL presentTransitionCustomed;
  
-- (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition withShowType:(CYAnimatedTransitionControllerShowType)showType forSourceViewController:(UIViewController *)sourceViewController;
+- (void)setCY_pushAnimatedTransition:(CYForwardTransition *)cy_animatedTransition forSourceViewController:(UIViewController *)sourceViewController;
 
-- (CYForwardTransition *)cy_animatedTransitionForSourceViewController:(UIViewController *)sourceViewController;
+- (CYForwardTransition *)cy_pushAnimatedTransitionForSourceViewController:(UIViewController *)sourceViewController;
 
 - (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated;
 
 + (UIViewController *)fetchTopViewController;
+
+#pragma mark - newer
+
+- (void)setCY_presentAnimatedTransition:(CYForwardTransition *)cy_animatedTransition;
+
+- (CYForwardTransition *)cy_PresentAnimatedTransition;
+
 
 @end

@@ -7,9 +7,7 @@
 //
 
 #import "DetailViewController.h"
-#import "ThirdViewController.h"
-#import "aViewController.h"
-
+#import "CYCustomedNavigationBar.h"
 
 @interface DetailViewController ()<CYAnimatedTransitionSourceViewDataSource>
 
@@ -22,40 +20,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    if (self.isNeedCY_customedNavigationBar) {
+        
+        self.cy_navigationBar = [[CYCustomedNavigationBar alloc] init];
+        self.cy_navigationBar.navigationItem.title = @"present模仿push动画";
+        self.textView.text = @"每个ViewController独立管理自己的navBar，在项目采用组件化URI路由结构时，同时使用CYCustomedNavigationBar和CYAnimatedTransition，达到用present模仿push方法跳转到任意协议页面的效果";
+    } else {
+        
+        
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapped:)];
-    [self.imageView addGestureRecognizer:tapImage];
-    UITapGestureRecognizer *tapText = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(textViewTapped:)];
-    [self.textView addGestureRecognizer:tapText];
-}
-
+    if (!self.navigationController) {
  
-#pragma mark - touch
-
-- (void)imageViewTapped:(UITapGestureRecognizer *)tap {
-
-    [self performSegueWithIdentifier:@"push" sender:nil];
-}
-
-- (void)textViewTapped:(UITapGestureRecognizer *)tap {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
     
-    aViewController *vc = [[aViewController alloc] init];
-//    CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
-//    [vc setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:self];
-//    [self presentViewController:vc animated:YES completion:nil];
-//    [self presentViewController:vc animated:YES completion:nil];
-    [vc cy_presentFromTopViewControllerWithAnimated:YES];
-}
-
-#pragma mark - segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- 
-    ThirdViewController *detailVC = segue.destinationViewController;
- 
-    CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
-    animatedTransition.sourceViewDataSource = self;
-    animatedTransition.destinationViewDataSource = detailVC;
-    [detailVC setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:self];
 }
 
 
@@ -67,8 +51,11 @@
 }
 
 - (UIPercentDrivenInteractiveTransition *)percentDrivenForCYInverseTransition:(CYInverseTransition *)animatedTransition {
-    
-    return animatedTransition.defaultPopPercentDriven;
+    if (self.navigationController) {
+        
+        return animatedTransition.defaultPopPercentDriven;
+    }
+    return nil;
 }
 
 #pragma mark - CYMaigicMoveTranstionDelegate

@@ -12,6 +12,12 @@
 #import "CYInverseTransition.h"
 #import "CYPushTransition.h"
 
+static const char CYPresentAnimatedTransitionKey[30] = "CYPresentAnimatedTransitionKey";
+static const char CYIsPushTransitionCustomed[26] = "CYIsPushTransitionCustomed";
+static const char CYIsPresentTransitionCustomed[29] = "CYIsPresentTransitionCustomed";
+
+
+
 @implementation UIViewController (CYAnimatedTransition)
 
 #pragma mark - runtime
@@ -25,6 +31,7 @@
     
     if (self.isPresentTransitionCustomed) {
         
+        self.transitioningDelegate = self;
     } else {
         
     }
@@ -36,12 +43,13 @@
             self.navigationController.delegate = self;
         } else {
             
-            self.navigationController.delegate = nil;
         }
     }
 
     [self cy_viewWillAppear:animated];
 }
+
+#pragma mark - runtime pravite
 
 static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL newSelector) {
     
@@ -64,7 +72,7 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
     if (topVC) {
         
         CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
-        [self setCY_animatedTransition:animatedTransition withShowType:CYAnimatedTransitionControllerShowTypePresent forSourceViewController:topVC];
+        [self setCY_presentAnimatedTransition:animatedTransition];
         [topVC presentViewController:self animated:animated completion:nil];
     }
 }
@@ -77,34 +85,21 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
     return resultVC;
 }
 
-- (void)setCY_animatedTransition:(CYForwardTransition *)cy_animatedTransition withShowType:(CYAnimatedTransitionControllerShowType)showType forSourceViewController:(UIViewController *)sourceViewController {
+- (void)setCY_pushAnimatedTransition:(CYForwardTransition *)cy_animatedTransition forSourceViewController:(UIViewController *)sourceViewController {
     
-    if ([self cy_animatedTransitionForSourceViewController:sourceViewController] != cy_animatedTransition) {
+    if ([self cy_pushAnimatedTransitionForSourceViewController:sourceViewController] != cy_animatedTransition) {
         
         objc_setAssociatedObject(self, class_getName([sourceViewController class]),
                                  cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+ 
+        NSAssert((sourceViewController.navigationController != nil), @"fromViewController doesn't have a navigationController");
         
-        switch (showType) {
-            case CYAnimatedTransitionControllerShowTypePush:
-                
-                NSAssert((sourceViewController.navigationController != nil), @"fromViewController doesn't have a navigationController");
-                
-                sourceViewController.navigationController.delegate = self;
-                self.pushTransitionCustomed = YES;
-                break;
-                
-            case CYAnimatedTransitionControllerShowTypePresent:
-                self.transitioningDelegate = sourceViewController;
-                self.presentTransitionCustomed = YES;
-                break;
-                
-            default:
-                break;
-        }
+        sourceViewController.navigationController.delegate = self;
+        self.pushTransitionCustomed = YES;
     }
 }
 
-- (CYForwardTransition *)cy_animatedTransitionForSourceViewController:(UIViewController *)sourceViewController {
+- (CYForwardTransition *)cy_pushAnimatedTransitionForSourceViewController:(UIViewController *)sourceViewController {
     
     return objc_getAssociatedObject(self, class_getName([sourceViewController class]));
 }
@@ -133,12 +128,12 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 - (void)setPushTransitionCustomed:(BOOL)transitionCustomed {
     
-    objc_setAssociatedObject(self, "isSelfADestinationVCForCustomPushTransition", [NSNumber numberWithBool:transitionCustomed], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, CYIsPushTransitionCustomed, [NSNumber numberWithBool:transitionCustomed], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)setPresentTransitionCustomed:(BOOL)presentTransitionCustomed{
     
-    objc_setAssociatedObject(self, "isSelfADestinationVCForCustomPresentTransition", [NSNumber numberWithBool:presentTransitionCustomed], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, CYIsPresentTransitionCustomed, [NSNumber numberWithBool:presentTransitionCustomed], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
@@ -146,9 +141,9 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 - (BOOL)isPushTransitionCustomed {
     
-    if (objc_getAssociatedObject(self, "isSelfADestinationVCForCustomPushTransition")) {
+    if (objc_getAssociatedObject(self, CYIsPushTransitionCustomed)) {
         
-        return [objc_getAssociatedObject(self, "isSelfADestinationVCForCustomPushTransition") boolValue];
+        return [objc_getAssociatedObject(self, CYIsPushTransitionCustomed) boolValue];
     } else {
         
         return NO;
@@ -157,9 +152,9 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 - (BOOL)isPresentTransitionCustomed {
     
-    if (objc_getAssociatedObject(self, "isSelfADestinationVCForCustomPresentTransition")) {
+    if (objc_getAssociatedObject(self, CYIsPresentTransitionCustomed)) {
         
-        return [objc_getAssociatedObject(self, "isSelfADestinationVCForCustomPresentTransition") boolValue];
+        return [objc_getAssociatedObject(self, CYIsPresentTransitionCustomed) boolValue];
     } else {
         
         return NO;
@@ -175,10 +170,10 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
  
     if (operation == UINavigationControllerOperationPush) {
         
-        return [toVC cy_animatedTransitionForSourceViewController:fromVC];
+        return [toVC cy_pushAnimatedTransitionForSourceViewController:fromVC];
     } else if (operation == UINavigationControllerOperationPop) {
         
-        return (id <UIViewControllerAnimatedTransitioning>)[fromVC cy_animatedTransitionForSourceViewController:toVC].inverseTransition;
+        return (id <UIViewControllerAnimatedTransitioning>)[fromVC cy_pushAnimatedTransitionForSourceViewController:toVC].inverseTransition;
     } else {
         
         return nil;
@@ -195,12 +190,12 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     
-    return [presented cy_animatedTransitionForSourceViewController:source];
+    return [presented cy_PresentAnimatedTransition];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     
-    return (id <UIViewControllerAnimatedTransitioning>)[dismissed cy_animatedTransitionForSourceViewController:(UIViewController *)dismissed.transitioningDelegate].inverseTransition;
+    return [dismissed cy_PresentAnimatedTransition].inverseTransition;
 }
 
 - (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator {
@@ -211,6 +206,25 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 - (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator {
     
     return ((CYBaseAnimatedTransition *)animator).percentDrivenTransition;
+}
+
+#pragma mark - newer
+
+- (void)setCY_presentAnimatedTransition:(CYForwardTransition *)cy_animatedTransition {
+    
+    if ([self cy_PresentAnimatedTransition] != cy_animatedTransition) {
+        
+        objc_setAssociatedObject(self, CYPresentAnimatedTransitionKey,
+                                 cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+ 
+        self.transitioningDelegate = self;
+        self.presentTransitionCustomed = YES;
+    }
+}
+
+- (CYForwardTransition *)cy_PresentAnimatedTransition {
+    
+    return objc_getAssociatedObject(self, CYPresentAnimatedTransitionKey);
 }
 
 @end

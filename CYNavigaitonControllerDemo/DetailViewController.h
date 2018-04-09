@@ -11,4 +11,6 @@
 
 @interface DetailViewController : UIViewController <CYAnimatedTransitionDestinationViewDataSource,CYAnimatedTransitionDelegate>
 
+@property (nonatomic, assign) BOOL isNeedCY_customedNavigationBar;
+
 @end

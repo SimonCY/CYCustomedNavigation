@@ -10,7 +10,6 @@
 
 static const CGFloat CYPushTransitionShadowOpacity = 0.4;
 static const CGFloat CYPushTransitionPushingViewOffsetX = -0.3;
-static const CGFloat CYPushTransitionShadowWidth = 5;
 
 @implementation CYPushInverseTransition
 
@@ -32,25 +31,20 @@ static const CGFloat CYPushTransitionShadowWidth = 5;
     shadowView.backgroundColor = [UIColor blackColor];
     shadowView.alpha = CYPushTransitionShadowOpacity;
     shadowView.frame = self.sourceViewController.view.bounds;
-    self.sourceViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.sourceViewController.view.layer.shadowOffset = CGSizeMake(-CYPushTransitionShadowWidth, 0);
-    self.sourceViewController.view.layer.shadowOpacity = CYPushTransitionShadowOpacity;
-    self.sourceViewController.view.layer.shadowRadius = CYPushTransitionShadowWidth;
-    
+ 
     //Start animating.
     [self.containerView insertSubview:self.destinationViewController.view belowSubview:self.sourceViewController.view];
     [self.containerView insertSubview:shadowView belowSubview:self.sourceViewController.view];
-    [self.containerView layoutIfNeeded];
-    
+ 
     [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-  
+        
         self.destinationViewController.view.transform = CGAffineTransformIdentity;
-        self.sourceViewController.view.transform = CGAffineTransformMakeTranslation(self.containerView.bounds.size.width, 0);
-        shadowView.alpha = 0;
+         self.sourceViewController.view.transform = CGAffineTransformMakeTranslation(self.containerView.bounds.size.width, 0);
+        shadowView.alpha = 0.02;
     } completion:^(BOOL finished) {
  
-        self.sourceViewController.view.layer.shadowOpacity = 0;
         self.sourceViewController.view.transform = CGAffineTransformIdentity;
+        shadowView.alpha = 0;
         [shadowView removeFromSuperview];
         [self transitionComplete];
     }];

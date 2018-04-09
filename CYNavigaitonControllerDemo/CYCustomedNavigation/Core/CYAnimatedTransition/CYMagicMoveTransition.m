@@ -1,28 +1,29 @@
 //
-//  CYMagicMoveInverseTransition.m
+//  CYMagicMoveTransition.m
 //  CYNavigaitonControllerDemo
 //
-//  Created by Chenyan on 2017/12/3.
+//  Created by DeepAI on 2017/11/20.
 //  Copyright © 2017年 DeepAI. All rights reserved.
 //
 
-#import "CYMagicMoveInverseTransition.h"
+#import "CYMagicMoveTransition.h"
 
-@interface CYMagicMoveInverseTransition ()
+@interface CYMagicMoveTransition()
 
 @end
 
-@implementation CYMagicMoveInverseTransition
+@implementation CYMagicMoveTransition
 
 #pragma mark - cover from super-class
 
 - (void)animateTransition {
     [super animateTransition];
-
-    // Get sourceView, destinationView and create sourceView's snapShot.In inverseTransition, view change from destinationView to sourceView, it's inserve from forwardTransition.
+    
+    // Get sourceView, destinationView and create sourceView's snapShot.
     UIView *snapShotView = [self.sourceView snapshotViewAfterScreenUpdates:NO];
     snapShotView.frame = [self.containerView convertRect:self.sourceView.frame fromView:self.sourceView.superview];
-
+    snapShotView.layer.cornerRadius = 20;
+    
     //Setup toVC before animating.
     self.destinationViewController.view.frame = [self.transitionContext finalFrameForViewController:self.destinationViewController];
     self.destinationViewController.view.alpha = 0;
@@ -37,6 +38,8 @@
 
     [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
 
+        
+        snapShotView.layer.cornerRadius = 0;
         self.destinationViewController.view.alpha = 1.0;
         snapShotView.frame = [self.containerView convertRect:self.destinationView.frame fromView:self.destinationView.superview];
 

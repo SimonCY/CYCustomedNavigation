@@ -6,15 +6,15 @@
 //  Copyright © 2018年 Facebook. All rights reserved.
 //
 
-#import "UIViewController+ACCustomedNavigationBar.h"
+#import "UIViewController+CYCustomedNavigationBar.h"
 #import <objc/runtime.h>
-#import "ACCustomedNavigationBar.h"
+#import "CYCustomedNavigationBar.h"
 
-#define ACCustomedNavBarPropertyName "ACCustomedNavBarPropertyName"
+#define CYCustomedNavBarPropertyName "CYCustomedNavBarPropertyName"
 
 
 
-@implementation UIViewController (ACCustomedNavigationBar)
+@implementation UIViewController (CYCustomedNavigationBar)
 
 #pragma mark - runtime
 
@@ -26,10 +26,10 @@
 - (void)cy_viewDidLayoutSubviews {
   [self cy_viewDidLayoutSubviews];
   
-  if (self.navBar) {
+  if (self.cy_navigationBar) {
     
-    [self.view bringSubviewToFront:self.navBar];
-    self.navBar.frame = CGRectMake(0, 0, self.view.bounds.size.width,cy_customNavbarHeight);
+    [self.view bringSubviewToFront:self.cy_navigationBar];
+    self.cy_navigationBar.frame = CGRectMake(0, 0, self.view.bounds.size.width,cy_customNavbarHeight);
   }
   
 }
@@ -49,9 +49,9 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 #pragma mark - setter
 
-- (void)setNavBar:(ACCustomedNavigationBar *)navBar {
+- (void)setCy_navigationBar:(CYCustomedNavigationBar *)navBar {
   
-  ACCustomedNavigationBar *oldBar = self.navBar;
+  CYCustomedNavigationBar *oldBar = self.cy_navigationBar;
   
   if (oldBar) {
     
@@ -67,13 +67,13 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
     [self.view addSubview:navBar];
   }
   
-  objc_setAssociatedObject(self, ACCustomedNavBarPropertyName, navBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+  objc_setAssociatedObject(self, CYCustomedNavBarPropertyName, navBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (ACCustomedNavigationBar *)navBar {
+- (CYCustomedNavigationBar *)cy_navigationBar {
  
   
-  return (ACCustomedNavigationBar *)objc_getAssociatedObject(self, ACCustomedNavBarPropertyName);
+  return (CYCustomedNavigationBar *)objc_getAssociatedObject(self, CYCustomedNavBarPropertyName);
 }
 
 @end
