@@ -11,7 +11,7 @@
  
 * CYCustomedNavigationBar
 
-&emsp;&emsp;CYCustomNavigationBar可以让你在不适用UINavigationController时在ViewController中仍然拥有一个独立管理的NavigationBar。
+&emsp;&emsp;CYCustomNavigationBar可以让你在不适用UINavigationController时在ViewController中仍然拥有一个独立管理的、可以像适用navigationController时一样设置各种item的NavigationBar。
 
 * CYAnimatedTransition
 
@@ -23,9 +23,14 @@
 ------------------------------------------------------
 ## Example
  
- ![Support](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/screenshot.gif)
- 　<center>动画效果示例</center>
+<div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/screenshot.gif"/></div>
 
+![Support](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_present.jpeg)
+ 
+  
+![Support](https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_push.jpeg)
+ 　<center>push</center>
+结构图
 
 ## Usage
 
