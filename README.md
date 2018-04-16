@@ -14,24 +14,29 @@
 
 &emsp;&emsp;CYNavigationController正好提供了这样一套解决方案，在项目中我们可以不嵌套一层导航控制器，而是通过CYAnimatedTransition自定义Present动画模拟Push，用CYCustomedNavigationBar单独为每个页面实现一个导航栏，这样就可以采用统一的方式对包括协议跳转的页面在内的这些页面进行管理，做到同UINavigationController一样的显示效果。
 
+
 * 场景2
 
 &emsp;&emsp;CYAnimatedTransition可以单独集成使用，的自定义拓展性比较强，可以根据需求进行Push和Present动画的自定义，拓展的详细方法下文会有介绍，SDK默认包含一个“神奇效果”动画，一个“push”动画可以直接使用和作为自定义动画的示例参考，动画对象一经创建，在Present和push场景下通用。
+
 
 * 场景3
 
 &emsp;&emsp;CYCustomedNavigationBar也可以单独集成使用，在UINavigationController涉猎不到的某个页面仍然需要一个导航栏，不一定非要为这个页面再单独嵌套一层导航控制器，也不必担心通过自定义View来制作导航栏添加按钮和设置样式的繁琐，CYCustomedNavigationBar可以让你在没有导航控制器支持的ViewController中像使用系统导航控制器一样拥有一个导航栏，并且是自己独立管理的。
 
 
+
 ### CYNavigationControllerSDK包含两部分：
+ 
  
 * CYCustomedNavigationBar
 
-&emsp;&emsp;CYCustomNavigationBar可以让你在不适用UINavigationController时在ViewController中仍然拥有一个独立管理的、可以像适用navigationController时一样设置各种item的NavigationBar，默认适配iPhoneX。
+CYCustomNavigationBar可以让你在不适用UINavigationController时在ViewController中仍然拥有一个独立管理的、可以像适用navigationController时一样设置各种item的NavigationBar，默认适配iPhoneX。
+
 
 * CYAnimatedTransition
 
-&emsp;&emsp;CYAnimatedTransition是一个可拓展的转场动画库，动画对象同时适用于Push和Present两种新页面显示模式，支持默认手势返回和自定义手势返回。随SDK附赠一对“神奇效果”的动画，一对模仿系统Push的动画。
+CYAnimatedTransition是一个可拓展的转场动画库，动画对象同时适用于Push和Present两种新页面显示模式，支持默认手势返回和自定义手势返回。随SDK附赠一对“神奇效果”的动画，一对模仿系统Push的动画。
 
 二者可以结合使用也可以根据需要单独集成某一项。
 
@@ -42,15 +47,19 @@
 
 ## Usage
 
+
 ### Download
 
-&emsp;&emsp;考虑到可能的代码扩充，项目暂时不进行CocoaPod集成方式的支持，集成时请直接Download zip文件，讲Demo中的CYCustomedNavigationSDK目录直接拖进自己的工程目录即可。
+考虑到可能的代码扩充，项目暂时不进行CocoaPod集成方式的支持，集成时请直接Download zip文件，讲Demo中的CYCustomedNavigationSDK目录直接拖进自己的工程目录即可。
+
 
 ### 调用
 
+
 #### CYCustomedNavigationBar
 
-&emsp;&emsp;使用CYCustomedNavigationBar时,直接在ViewController中:
+
+使用CYCustomedNavigationBar时,直接在ViewController中:
 
 ```objc
 #import "aViewController.h"
@@ -78,7 +87,9 @@
 @end
 ```
 
+
 其中各种Item的颜色、字体等的主题设置已然生效，但是导航栏的背景必须由cy_navigationBar.barTintColor来设置。
+
 
 ```objc
 //title
@@ -97,18 +108,24 @@ textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:16];
 [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
 
 ```
+
 #### CYAnimatedTransition
+
 
 CYAnimatedTransition在使用时也可做到无侵入，每个动画包含Forward正向动画和Inverse反向动画两部分，做动画库拓展时我们需要注意，下文会有所介绍，使用时我们的代码中只需涉猎到正向动画即可
 
+
 导入主头文件
+
 
 ```objc
 #import "CYAnimatedTransition.h"
  
 ```
 
+
 * Present
+
 
 为ViewController创建一个转场动画对象，并设置给ViewController
 
@@ -123,11 +140,14 @@ animatedTransition.delegate = detailVC;
 
 然后像平时一样调用present
 
+
 ```objc
 [self presentViewController:detailVC animated:YES completion:nil];
 ```
 
+
 * Push
+
 
 创建一个同样的转场动画对象，并设置给ViewController
 
@@ -140,17 +160,23 @@ animatedTransition.delegate = detailVC;
 [detailVC setCY_pushAnimatedTransition:animatedTransition forSourceViewController:self];
 ```
 
+
 然后像平时一样调用push
+
 
 ```objc
 [self.navigationController pushViewController:detailVC animated:YES];
 ```
 
+
 * 关于sourceViewDataSource和destinationViewDataSource
+
 
 类似于“神奇效果”动画一样，有的动画需要在动画过程中将前一个SourceViewController中的一个View移动到DestiationViewController中的另一个位置，为了做到无侵入，所以这里通过DataSource将这些View传递给动画。
 
+
 * 关于sourceViewDataSource和destinationViewDataSource
+
 
 有时，除了SourceViewDataSource提供的View之外，我们可能需要在DestinationViewController中在动画开始时做一些其他的UI控件的动画，或者在动画开始时或者结束时做一些其他的事情，此时可以用到以下两个delegate方法
 
@@ -167,17 +193,23 @@ animatedTransition.delegate = detailVC;
 @end
 ```
 
+
 ## Expansion
 
-<table><tr><td bgcolor=#FF0000>
+
+<table><tr><td bgcolor=#FF4500>
 如果需要对动画库进行拓展，需要仔细阅读本段落
 </td></tr></table>
 
-&emsp;&emsp;CYAnimatedTransition核心共包含三个类CYBaseAnimatedTransition、CYForwardTransition、CYInverseTransition，其中CYBaseAnimatedTransition为核心基类，CYForwardTransition、CYInverseTransition分别为正向、反向动画的基类，其中处理了一些正反向动画区别的业务，和在正向动画被创建时自动为我们创建一个反向动画并设置数据，我们拓展时创建正反向动画应该分别继承自这两个父类。
 
-&emsp;&emsp;下面将以demo中的CYMagicMoveTransition为例，说明我们在拓展动画库时需要做的工作。
+CYAnimatedTransition核心共包含三个类CYBaseAnimatedTransition、CYForwardTransition、CYInverseTransition，其中CYBaseAnimatedTransition为核心基类，CYForwardTransition、CYInverseTransition分别为正向、反向动画的基类，其中处理了一些正反向动画区别的业务，和在正向动画被创建时自动为我们创建一个反向动画并设置数据，我们拓展时创建正反向动画应该分别继承自这两个父类。
+
+
+下面将以demo中的CYMagicMoveTransition为例，说明我们在拓展动画库时需要做的工作。
+
 
 * 1.新建类文件
+
 
 按照Forward中自动帮我们创建反向动画对象的规则，在创建动画类文件时我们应分别命名为：
 
@@ -186,7 +218,9 @@ animatedTransition.delegate = detailVC;
 反向动画类:XXXInverseTransition
 ```
 
+
 * 2.内部实现
+
 
 &emsp;&emsp;在动画对象内部重写父类的动画方法，按需实现动画细节，其中的sourceViewController和destinationViewController是转场动画发生时系统自动帮我们获取的，sourceView和destinationView是我们通过上文提到的DataSource自定义获取到的，在动画结束时，须调用
 
@@ -245,7 +279,9 @@ animatedTransition.delegate = detailVC;
 @end
 ```
 
+
 * 关于push和present自定义动画的异同
+
 
 附上两张结构图：
 
