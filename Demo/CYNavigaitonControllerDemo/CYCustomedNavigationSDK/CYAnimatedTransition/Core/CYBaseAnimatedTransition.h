@@ -18,6 +18,8 @@
  */
 - (void)CYAnimatedTransitionStartAnimatingWithAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
 
+- (void)CYAnimatedTransitionEndAnimatingWithAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
+
 @end
 
 @protocol CYAnimatedTransitionSourceViewDataSource <NSObject>

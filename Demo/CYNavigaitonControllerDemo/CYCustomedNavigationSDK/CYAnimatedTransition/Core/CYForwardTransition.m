@@ -32,6 +32,7 @@
 
         //setup back inverseTransition
         NSString *inverseTransitionClassName = [NSString stringWithFormat:@"%@InverseTransition",[NSStringFromClass([self class]) substringToIndex:[NSStringFromClass([self class]) rangeOfString:@"Transition"].location]];
+    
         _inverseTransition = [[NSClassFromString(inverseTransitionClassName) alloc] init];
         _inverseTransition.forwardTransition = self;
         

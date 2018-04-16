@@ -51,6 +51,10 @@
 
 - (void)transitionComplete {
     [self.transitionContext completeTransition:!self.transitionContext.transitionWasCancelled];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(CYAnimatedTransitionEndAnimatingWithAnimatedTransition:)]) {
+        
+        [self.delegate CYAnimatedTransitionEndAnimatingWithAnimatedTransition:self];
+    }
 }
 
 - (void)animateTransition{

@@ -156,7 +156,7 @@
 				B678CD1E20529DA3004AC5A9 /* UIBarButtonItem+Extension.m */,
 				B6C8040B2079EEC500061FDE /* CYNavigationController.h */,
 				B6C8040A2079EEC500061FDE /* CYNavigationController.m */,
-				B69278421FC2C28D005E9126 /* CYCustomedNavigation */,
+				B69278421FC2C28D005E9126 /* CYCustomedNavigationSDK */,
 				B69278101FC2C157005E9126 /* AppDelegate.h */,
 				B69278111FC2C157005E9126 /* AppDelegate.m */,
 				B69278131FC2C157005E9126 /* ListViewController.h */,
@@ -190,13 +190,13 @@
 			path = CYNavigaitonControllerDemoUITests;
 			sourceTree = "<group>";
 		};
-		B69278421FC2C28D005E9126 /* CYCustomedNavigation */ = {
+		B69278421FC2C28D005E9126 /* CYCustomedNavigationSDK */ = {
 			isa = PBXGroup;
 			children = (
 				B678CD1720529BF2004AC5A9 /* ACCustomedNavigationBar */,
 				B69278491FC2C361005E9126 /* CYAnimatedTransition */,
 			);
-			path = CYCustomedNavigation;
+			path = CYCustomedNavigationSDK;
 			sourceTree = "<group>";
 		};
 		B69278491FC2C361005E9126 /* CYAnimatedTransition */ = {
