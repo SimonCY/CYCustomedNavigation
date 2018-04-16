@@ -40,22 +40,15 @@
  
 <div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/screenshot.gif"/></div>
 
-
-<div align=center><img width="700" height="315" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_present.jpeg"/></div>
-
-
-<div align=center><img width="700" height="430" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_push.jpeg"/></div>
- 
-
 ## Usage
 
-#### Download
+### Download
 
 &emsp;&emsp;考虑到可能的代码扩充，项目暂时不进行CocoaPod集成方式的支持，集成时请直接Download zip文件，讲Demo中的CYCustomedNavigationSDK目录直接拖进自己的工程目录即可。
 
-#### 调用
+### 调用
 
-* CYCustomedNavigationBar
+#### CYCustomedNavigationBar
 
 &emsp;&emsp;使用CYCustomedNavigationBar时,直接在ViewController中:
 
@@ -87,7 +80,7 @@
 
 其中各种Item的颜色、字体等的主题设置已然生效，但是导航栏的背景必须由cy_navigationBar.barTintColor来设置。
 
-```
+```objc
 //title
 UINavigationBar *appearance = [UINavigationBar appearance];
 NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
@@ -104,22 +97,163 @@ textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:16];
 [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
 
 ```
-* CYAnimatedTransition
+#### CYAnimatedTransition
 
-&emsp;&emsp;
+CYAnimatedTransition在使用时也可做到无侵入，每个动画包含Forward正向动画和Inverse反向动画两部分，做动画库拓展时我们需要注意，下文会有所介绍，使用时我们的代码中只需涉猎到正向动画即可
+
+导入主头文件
+
+```objc
+#import "CYAnimatedTransition.h"
+ 
+```
+
+* Present
+
+为ViewController创建一个转场动画对象，并设置给ViewController
+
+```objc
+//自定义present
+CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
+animatedTransition.sourceViewDataSource = self;
+animatedTransition.destinationViewDataSource = detailVC;
+animatedTransition.delegate = detailVC;
+[detailVC setCY_presentAnimatedTransition:animatedTransition];
+```
+
+然后像平时一样调用present
+
+```objc
+[self presentViewController:detailVC animated:YES completion:nil];
+```
+
+* Push
+
+创建一个同样的转场动画对象，并设置给ViewController
+
+```objc
+//自定义push
+CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
+animatedTransition.sourceViewDataSource = self;
+animatedTransition.destinationViewDataSource = detailVC;
+animatedTransition.delegate = detailVC;
+[detailVC setCY_pushAnimatedTransition:animatedTransition forSourceViewController:self];
+```
+
+然后像平时一样调用push
+
+```objc
+[self.navigationController pushViewController:detailVC animated:YES];
+```
+
+* 关于sourceViewDataSource和destinationViewDataSource
+
+类似于“神奇效果”动画一样，有的动画需要在动画过程中将前一个SourceViewController中的一个View移动到DestiationViewController中的另一个位置，为了做到无侵入，所以这里通过DataSource将这些View传递给动画。
+
+* 关于sourceViewDataSource和destinationViewDataSource
+
+有时，除了SourceViewDataSource提供的View之外，我们可能需要在DestinationViewController中在动画开始时做一些其他的UI控件的动画，或者在动画开始时或者结束时做一些其他的事情，此时可以用到以下两个delegate方法
+
+```objc
+@protocol CYAnimatedTransitionDelegate <NSObject>
+
+@optional
+/*
+ * Sycn called before animation, you can add some UIViewAnimation for other view in this method and the UIViewAnimation-task's characteristic ,it would seem like to called asycn.
+ */
+- (void)CYAnimatedTransitionStartAnimatingWithAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
+
+- (void)CYAnimatedTransitionEndAnimatingWithAnimatedTransition:(CYBaseAnimatedTransition *_Nullable)animatedTransition;
+@end
+```
 
 ## Expansion
 
- 
-#### 1.单个使用
+<table><tr><td bgcolor=#FF0000>
+如果需要对动画库进行拓展，需要仔细阅读本段落
+</td></tr></table>
+
+&emsp;&emsp;CYAnimatedTransition核心共包含三个类CYBaseAnimatedTransition、CYForwardTransition、CYInverseTransition，其中CYBaseAnimatedTransition为核心基类，CYForwardTransition、CYInverseTransition分别为正向、反向动画的基类，其中处理了一些正反向动画区别的业务，和在正向动画被创建时自动为我们创建一个反向动画并设置数据，我们拓展时创建正反向动画应该分别继承自这两个父类。
+
+&emsp;&emsp;下面将以demo中的CYMagicMoveTransition为例，说明我们在拓展动画库时需要做的工作。
+
+* 1.新建类文件
+
+按照Forward中自动帮我们创建反向动画对象的规则，在创建动画类文件时我们应分别命名为：
 
 ```objc
-CYPromptCoverView *cover = [[CYPromptCoverView alloc] initWithBgColor:[UIColor colorWithWhite:0 alpha:0.5] revealView:self.typeBtn revealType:CYPromptCoverViewRevealTypeOval layoutType:CYPromptCoverViewLayoutTypeRightDown];
-cover.des = @"000000000000";
-cover.detailDes = @"3s 4s 5s";
-cover.delegate = self;
-[Cover showInView:self.view];
+正向动画类:XXXTransition
+反向动画类:XXXInverseTransition
 ```
+
+* 2.内部实现
+
+&emsp;&emsp;在动画对象内部重写父类的动画方法，按需实现动画细节，其中的sourceViewController和destinationViewController是转场动画发生时系统自动帮我们获取的，sourceView和destinationView是我们通过上文提到的DataSource自定义获取到的，在动画结束时，须调用
+
+```objc
+[self transitionComplete];
+```
+
+进行收尾处理。在反向动画内部同理，只不过反向动画内部是把dimiss或者pop当做正向。示例如下：
+
+```objc
+#import "CYMagicMoveTransition.h"
+
+@interface CYMagicMoveTransition()
+
+@end
+
+@implementation CYMagicMoveTransition
+
+#pragma mark - cover from super-class
+
+- (void)animateTransition {
+    [super animateTransition];
+    
+    // Get sourceView, destinationView and create sourceView's snapShot.
+    UIView *snapShotView = [self.sourceView snapshotViewAfterScreenUpdates:NO];
+    snapShotView.frame = [self.containerView convertRect:self.sourceView.frame fromView:self.sourceView.superview];
+    snapShotView.layer.cornerRadius = 20;
+    
+    //Setup toVC before animating.
+    self.destinationViewController.view.frame = [self.transitionContext finalFrameForViewController:self.destinationViewController];
+    self.destinationViewController.view.alpha = 0;
+
+    //Start animating.
+    [self.containerView addSubview:self.destinationViewController.view];
+    [self.containerView addSubview:snapShotView];
+    [self.containerView layoutIfNeeded];
+
+    self.sourceView.hidden = YES;
+    self.destinationView.hidden = YES;
+
+    [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
+
+        
+        snapShotView.layer.cornerRadius = 0;
+        self.destinationViewController.view.alpha = 1.0;
+        snapShotView.frame = [self.containerView convertRect:self.destinationView.frame fromView:self.destinationView.superview];
+
+    } completion:^(BOOL finished) {
+
+        self.sourceView.hidden = NO;
+        self.destinationView.hidden = NO;
+        [snapShotView removeFromSuperview];
+        [self transitionComplete];
+    }];
+}
+@end
+```
+
+* 关于push和present自定义动画的异同
+
+附上两张结构图：
+
+<div align=center><img width="700" height="315" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_present.jpeg"/></div>
+
+
+<div align=center><img width="700" height="430" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/structure_push.jpeg"/></div>
+ 
  
 ## <a id="Hope"></a>Hope
 * If you find bug when used，Hope you can Issues me，Thank you or try to download the latest code of this framework to see the BUG has been fixed or not）
