@@ -168,6 +168,12 @@ animatedTransition.delegate = detailVC;
 [self.navigationController pushViewController:detailVC animated:YES];
 ```
 
+此外，SDK中还提供了一个方法，自动帮你找到当前显示的页面并将新页面从当前显示页面以Push动画效果Present出来，此方法可直接应用于组件化中模拟push。
+
+```objc
+[detailVC cy_presentFromTopViewControllerWithAnimated:YES];
+```
+
 
 * 关于sourceViewDataSource和destinationViewDataSource
 
