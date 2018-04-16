@@ -36,7 +36,7 @@ static const CGFloat CYPushTransitionPushingViewOffsetX = -0.3;
     [self.containerView insertSubview:self.destinationViewController.view belowSubview:self.sourceViewController.view];
     [self.containerView insertSubview:shadowView belowSubview:self.sourceViewController.view];
  
-    [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         self.destinationViewController.view.transform = CGAffineTransformIdentity;
          self.sourceViewController.view.transform = CGAffineTransformMakeTranslation(self.containerView.bounds.size.width, 0);
