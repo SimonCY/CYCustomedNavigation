@@ -13,7 +13,7 @@
 @end
 
 @implementation CYMagicMoveTransition
-
+ 
 #pragma mark - cover from super-class
 
 - (void)animateTransition {

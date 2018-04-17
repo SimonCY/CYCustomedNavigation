@@ -13,7 +13,7 @@
 @end
 
 @implementation CYMagicMoveInverseTransition
-
+ 
 #pragma mark - cover from super-class
 
 - (void)animateTransition {
@@ -26,10 +26,12 @@
 
     //Setup toVC before animating.
     self.destinationViewController.view.frame = [self.transitionContext finalFrameForViewController:self.destinationViewController];
-    self.destinationViewController.view.alpha = 0;
-
+    
     //Start animating.
-    [self.containerView addSubview:self.destinationViewController.view];
+    if (self.destinationViewController.view.superview == nil) {
+        
+        [self.containerView insertSubview:self.destinationViewController.view belowSubview:self.sourceViewController.view];
+    }
     [self.containerView addSubview:snapShotView];
     [self.containerView layoutIfNeeded];
 
@@ -38,6 +40,7 @@
 
     [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^{
 
+        self.sourceViewController.view.alpha = 0;
         snapShotView.layer.cornerRadius = 20;
         self.destinationViewController.view.alpha = 1.0;
         snapShotView.frame = [self.containerView convertRect:self.destinationView.frame fromView:self.destinationView.superview];

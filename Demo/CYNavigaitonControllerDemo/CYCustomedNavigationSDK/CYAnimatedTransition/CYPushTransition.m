@@ -14,7 +14,7 @@ static const CGFloat CYPushTransitionPushingViewOffsetX = -0.3;
 @implementation CYPushTransition
 
 #pragma mark - cover from super-class
-
+ 
 - (instancetype)init {
     if (self = [super init]) {
         self.transitionDuration = 0.35;

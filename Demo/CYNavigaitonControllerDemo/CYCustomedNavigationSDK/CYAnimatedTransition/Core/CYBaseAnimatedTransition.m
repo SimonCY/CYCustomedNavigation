@@ -57,8 +57,8 @@
     }
 }
 
-- (void)animateTransition{
-    
+- (void)animateTransition {
+ 
 }
 
 #pragma mark - pravite

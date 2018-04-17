@@ -12,7 +12,7 @@ static const CGFloat CYPushTransitionShadowOpacity = 0.4;
 static const CGFloat CYPushTransitionPushingViewOffsetX = -0.3;
 
 @implementation CYPushInverseTransition
-
+ 
 - (instancetype)init {
     if (self = [super init]) {
         self.transitionDuration = 0.35;
@@ -33,7 +33,10 @@ static const CGFloat CYPushTransitionPushingViewOffsetX = -0.3;
     shadowView.frame = self.sourceViewController.view.bounds;
  
     //Start animating.
-    [self.containerView insertSubview:self.destinationViewController.view belowSubview:self.sourceViewController.view];
+    if (self.destinationViewController.view.superview == nil) {
+        
+        [self.containerView insertSubview:self.destinationViewController.view belowSubview:self.sourceViewController.view];
+    }
     [self.containerView insertSubview:shadowView belowSubview:self.sourceViewController.view];
  
     [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{

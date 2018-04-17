@@ -22,6 +22,15 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
 
 @implementation ListViewController
 
+- (void)dealloc {
+    
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -107,6 +116,14 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
     DetailViewController *detailVC = [board instantiateViewControllerWithIdentifier: @"detailVC"];
 
     if (indexPath.section == 0) {
+        
+        if (indexPath.row == 0) {
+            
+            detailVC.isNeedCY_customedNavigationBar = YES;
+        } else {
+            
+            detailVC.isNeedCY_customedNavigationBar = NO;
+        }
         
         //自定义present
         CYMagicMoveTransition *animatedTransition = [[CYMagicMoveTransition alloc] init];
