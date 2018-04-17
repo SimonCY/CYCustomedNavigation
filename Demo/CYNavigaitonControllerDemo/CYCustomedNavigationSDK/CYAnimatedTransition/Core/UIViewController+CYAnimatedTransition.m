@@ -217,7 +217,7 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
         objc_setAssociatedObject(self, CYPresentAnimatedTransitionKey,
                                  cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
  
-        self.transitioningDelegate = self;
+        self.transitioningDelegate = self;        
         self.presentTransitionCustomed = YES;
     }
 }
