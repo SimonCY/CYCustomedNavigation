@@ -43,7 +43,7 @@ CYAnimatedTransition是一个可拓展的转场动画库，动画对象同时适
 ------------------------------------------------------
 ## Example
  
-<div align=center><img width="270" height="480" src="https://github.com/SimonCY/CYNavigaitonController/raw/master/Img/screenshot.gif"/></div>
+<div align=center><img width="270" height="480" src="https://img-blog.csdn.net/20180417103328832?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQ2MDQxMDY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70"/></div>
 
 ## Usage
 
