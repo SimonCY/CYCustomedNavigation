@@ -29,6 +29,8 @@
  */
 @property (nonatomic, strong) UIColor *barTintColor;
 
+@property (nonatomic, copy) NSDictionary<NSAttributedStringKey, id> *titleTextAttributes NS_AVAILABLE_IOS(5_0) UI_APPEARANCE_SELECTOR;
+
 @property (nonatomic, assign, getter=isShadowHidden) BOOL shadowHidden;
 
 @end

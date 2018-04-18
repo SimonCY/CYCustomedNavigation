@@ -94,4 +94,10 @@
   }
 }
 
+- (void)setTitleTextAttributes:(NSDictionary<NSAttributedStringKey,id> *)titleTextAttributes {
+    
+    _titleTextAttributes = [titleTextAttributes copy];
+    [self.navBar setTitleTextAttributes:_titleTextAttributes];
+}
+
 @end
