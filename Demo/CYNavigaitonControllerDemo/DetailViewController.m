@@ -9,6 +9,8 @@
 #import "DetailViewController.h"
 #import "CYCustomedNavigationBar.h"
 #import "UIBarButtonItem+Extension.h"
+#import "aViewController.h"
+
 
 @interface DetailViewController ()
 
@@ -52,7 +54,14 @@
  
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }
+}
+
+#pragma mark - touch
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
+    aViewController *vc = [[aViewController alloc] init];
+    [vc cy_presentFromTopViewControllerWithAnimated:YES];
 }
 
 #pragma mark - item click events

@@ -29,8 +29,6 @@
  */
 @property (nonatomic, strong) UIColor *barTintColor;
 
-@property (nonatomic, strong) UIColor *titleColor;
-
 @property (nonatomic, assign, getter=isShadowHidden) BOOL shadowHidden;
 
 @end

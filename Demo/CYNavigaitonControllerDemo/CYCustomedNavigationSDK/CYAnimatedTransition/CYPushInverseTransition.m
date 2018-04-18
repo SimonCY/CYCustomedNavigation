@@ -42,7 +42,7 @@ static const CGFloat CYPushTransitionPushingViewOffsetX = -0.3;
     [UIView animateWithDuration:[self transitionDuration:self.transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         self.destinationViewController.view.transform = CGAffineTransformIdentity;
-         self.sourceViewController.view.transform = CGAffineTransformMakeTranslation(self.containerView.bounds.size.width, 0);
+        self.sourceViewController.view.transform = CGAffineTransformMakeTranslation(self.containerView.bounds.size.width, 0);
         shadowView.alpha = 0.02;
     } completion:^(BOOL finished) {
  

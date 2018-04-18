@@ -27,6 +27,7 @@
 		B692784F1FC2E82D005E9126 /* CYMagicMoveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */; };
 		B69B5C831FE6A9B200C0CABC /* CYForwardTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */; };
 		B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */; };
+		B6A3E9792085DE1100A4D571 /* aViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A3E9782085DE1100A4D571 /* aViewController.m */; };
 		B6C8040C2079EEC600061FDE /* CYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C8040A2079EEC500061FDE /* CYNavigationController.m */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,8 @@
 		B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYForwardTransition.m; sourceTree = "<group>"; };
 		B69B5C841FE6A9BE00C0CABC /* CYInverseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYInverseTransition.h; sourceTree = "<group>"; };
 		B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYInverseTransition.m; sourceTree = "<group>"; };
+		B6A3E9772085DE1100A4D571 /* aViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aViewController.h; sourceTree = "<group>"; };
+		B6A3E9782085DE1100A4D571 /* aViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aViewController.m; sourceTree = "<group>"; };
 		B6C8040A2079EEC500061FDE /* CYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYNavigationController.m; sourceTree = "<group>"; };
 		B6C8040B2079EEC500061FDE /* CYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNavigationController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +166,8 @@
 				B69278141FC2C157005E9126 /* ListViewController.m */,
 				B692784A1FC2C519005E9126 /* DetailViewController.h */,
 				B692784B1FC2C519005E9126 /* DetailViewController.m */,
+				B6A3E9772085DE1100A4D571 /* aViewController.h */,
+				B6A3E9782085DE1100A4D571 /* aViewController.m */,
 				B69278161FC2C157005E9126 /* Main.storyboard */,
 				B69278191FC2C157005E9126 /* Assets.xcassets */,
 				B692781B1FC2C157005E9126 /* LaunchScreen.storyboard */,
@@ -369,6 +374,7 @@
 				B6C8040C2079EEC600061FDE /* CYNavigationController.m in Sources */,
 				B64749592069EA10002CB3E7 /* CYPushTransition.m in Sources */,
 				B69278481FC2C35E005E9126 /* CYBaseAnimatedTransition.m in Sources */,
+				B6A3E9792085DE1100A4D571 /* aViewController.m in Sources */,
 				B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */,
 				B62ACBE3206B4FC9002A35D2 /* CYCustomedNavigationBar.m in Sources */,
 				B69278201FC2C157005E9126 /* main.m in Sources */,

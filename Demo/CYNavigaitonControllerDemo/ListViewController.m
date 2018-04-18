@@ -9,6 +9,7 @@
 #import "ListViewController.h"
 #import "CYAnimatedTransition.h"
 #import "DetailViewController.h"
+#import "CYCustomedNavigationBar.h"
 
 
 @interface ListViewController ()<UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,CYAnimatedTransitionSourceViewDataSource>
@@ -22,20 +23,13 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
 
 @implementation ListViewController
 
-- (void)dealloc {
-    
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self setupNav];
     [self setupUI];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissWithoutAnimation) name:@"dismissNotification" object:nil];
 }
 
 - (void)setupNav {
@@ -61,6 +55,15 @@ static NSString * const CellReuseIdentifier = @"CellReuseIdentifier";
     [super viewWillAppear:animated];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
+#pragma mark - notification event
+
+- (void)dismissWithoutAnimation {
+    
+    [self cy_dismissAllPresentedViewControllerWithAnimated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - collectionViewDataSource

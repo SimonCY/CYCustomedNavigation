@@ -9,7 +9,6 @@
 #import "CYCustomedNavigationBar.h"
 
 #define CYPresentedViewNavigationBarDefaultBarTintColor [UIColor colorWithWhite:246 / 255.0 alpha:1]
-#define CYPresentedViewNavigationBarDefaultTitleColor [UIColor darkTextColor]
 
 @interface CYCustomedNavigationBar ()
 
@@ -50,7 +49,6 @@
  
   //defaultData
   self.barTintColor = CYPresentedViewNavigationBarDefaultBarTintColor;
-  self.titleColor = CYPresentedViewNavigationBarDefaultTitleColor;
   self.shadowHidden = NO;
 }
 
@@ -95,17 +93,5 @@
     }
   }
 }
-
-- (void)setTitleColor:(UIColor *)titleColor {
-  NSAssert([titleColor isKindOfClass:[UIColor class]], @"titleColor is not a UIColor class");
-  NSAssert(titleColor != nil, @"titleColor can not be nil");
- 
-  _titleColor = titleColor;
-  
-  NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-  textAttrs[NSForegroundColorAttributeName] = titleColor;
-  [self.navBar setTitleTextAttributes:textAttrs];
-}
-
 
 @end

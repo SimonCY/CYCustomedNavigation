@@ -77,8 +77,50 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
     }
 }
 
-+ (UIViewController *)fetchTopViewController {
+- (void)cy_dismissAllPresentedViewControllerWithAnimated:(BOOL)animated completion:(void (^)(void))completion {
     
+    if (self.presentedViewController == nil) return;
+    
+    if (animated) {
+        
+        //when you disimss more than two ViewController with animated YES ,top presentedViewController will be dismissed with animation, others will be dismissed without animation
+        UIView *snapShotView = [[UIApplication sharedApplication].keyWindow snapshotViewAfterScreenUpdates:NO];
+        snapShotView.frame = [[UIScreen mainScreen] bounds];
+        
+        UIView *shadowView = [[UIView alloc] init];
+        shadowView.backgroundColor = [UIColor blackColor];
+        shadowView.alpha = 0.4;
+        shadowView.frame = snapShotView.frame;
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:shadowView];
+        [[UIApplication sharedApplication].keyWindow addSubview:snapShotView];
+        [self dismissViewControllerAnimated:NO completion:^{
+            
+            NSTimeInterval duration = [CYPushTransition new].transitionDuration;
+            self.view.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width * -0.3, 0);
+            [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                
+                shadowView.alpha = 0.02;
+                self.view.transform = CGAffineTransformIdentity;
+                snapShotView.transform = CGAffineTransformMakeTranslation(snapShotView.frame.size.width, 0);
+            } completion:^(BOOL finished) {
+                
+                [shadowView removeFromSuperview];
+                [snapShotView removeFromSuperview];
+                
+                if (completion) {
+                    completion();
+                }
+            }];
+        }];
+    } else {
+
+        [self dismissViewControllerAnimated:NO completion:completion];
+    }
+}
+
++ (UIViewController *)fetchTopViewController {
+ 
     UIViewController *resultVC;
     resultVC = [self topViewControllerOfViewController:[[UIApplication sharedApplication].keyWindow rootViewController]];
     
@@ -103,6 +145,24 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
     
     return objc_getAssociatedObject(self, class_getName([sourceViewController class]));
 }
+
+- (void)setCY_presentAnimatedTransition:(CYForwardTransition *)cy_animatedTransition {
+    
+    if ([self cy_PresentAnimatedTransition] != cy_animatedTransition) {
+        
+        objc_setAssociatedObject(self, CYPresentAnimatedTransitionKey,
+                                 cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        self.transitioningDelegate = self;
+        self.presentTransitionCustomed = YES;
+    }
+}
+
+- (CYForwardTransition *)cy_PresentAnimatedTransition {
+    
+    return objc_getAssociatedObject(self, CYPresentAnimatedTransitionKey);
+}
+
 
 #pragma mark - pravite
 
@@ -206,25 +266,6 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 - (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator {
     
     return ((CYBaseAnimatedTransition *)animator).percentDrivenTransition;
-}
-
-#pragma mark - newer
-
-- (void)setCY_presentAnimatedTransition:(CYForwardTransition *)cy_animatedTransition {
-    
-    if ([self cy_PresentAnimatedTransition] != cy_animatedTransition) {
-        
-        objc_setAssociatedObject(self, CYPresentAnimatedTransitionKey,
-                                 cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
- 
-        self.transitioningDelegate = self;
-        self.presentTransitionCustomed = YES;
-    }
-}
-
-- (CYForwardTransition *)cy_PresentAnimatedTransition {
-    
-    return objc_getAssociatedObject(self, CYPresentAnimatedTransitionKey);
 }
 
 @end

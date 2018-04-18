@@ -103,14 +103,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="S3u-G7-8ve" customClass="image">
-                                <rect key="frame" x="16" y="38" width="343" height="499"/>
+                                <rect key="frame" x="16" y="90" width="343" height="499"/>
                                 <color key="backgroundColor" red="0.97457095689999995" green="0.96986288470000004" blue="0.97927902919999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="S3u-G7-8ve" secondAttribute="height" multiplier="690:1004" id="QnM-Bd-7gy"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu. " textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4K7-MX-peX">
-                                <rect key="frame" x="16" y="557" width="343" height="110"/>
+                                <rect key="frame" x="16" y="609" width="343" height="58"/>
                                 <color key="backgroundColor" red="0.97457095689999995" green="0.96986288470000004" blue="0.97927902919999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -122,7 +122,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="4K7-MX-peX" secondAttribute="trailing" id="FY6-hY-Yon"/>
                             <constraint firstItem="S3u-G7-8ve" firstAttribute="leading" secondItem="apj-gv-ZBG" secondAttribute="leadingMargin" id="NK1-Vc-9I2"/>
                             <constraint firstItem="i2W-xE-BFK" firstAttribute="top" secondItem="4K7-MX-peX" secondAttribute="bottom" id="RRZ-jK-Rya"/>
-                            <constraint firstItem="S3u-G7-8ve" firstAttribute="top" secondItem="xc8-nC-sgo" secondAttribute="bottom" constant="18" id="Yht-mX-dQv"/>
+                            <constraint firstItem="S3u-G7-8ve" firstAttribute="top" secondItem="xc8-nC-sgo" secondAttribute="bottom" constant="70" id="Yht-mX-dQv"/>
                             <constraint firstItem="4K7-MX-peX" firstAttribute="leading" secondItem="apj-gv-ZBG" secondAttribute="leadingMargin" id="o8w-91-JGi"/>
                             <constraint firstItem="S3u-G7-8ve" firstAttribute="trailing" secondItem="apj-gv-ZBG" secondAttribute="trailingMargin" id="xw8-Qt-si5"/>
                         </constraints>
