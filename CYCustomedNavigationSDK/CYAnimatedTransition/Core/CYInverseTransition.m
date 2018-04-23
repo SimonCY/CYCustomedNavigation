@@ -67,7 +67,9 @@
         [_defaultPopPercentDriven updateInteractiveTransition:progress];
     } else if (recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded) {
  
-        if (progress > 0.3) {
+        _defaultPopPercentDriven.completionSpeed = 0.3;
+
+        if (progress > 0.5) {
             
             [_defaultPopPercentDriven finishInteractiveTransition];
         } else {
