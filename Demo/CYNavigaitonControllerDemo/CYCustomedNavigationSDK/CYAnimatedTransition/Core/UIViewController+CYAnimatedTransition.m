@@ -35,7 +35,7 @@ static const char CYIsPresentTransitionCustomed[29] = "CYIsPresentTransitionCust
     } else {
         
     }
- 
+    
     if (self.navigationController) {
         
         if (self.isPushTransitionCustomed) {
@@ -45,7 +45,7 @@ static const char CYIsPresentTransitionCustomed[29] = "CYIsPresentTransitionCust
             
         }
     }
-
+    
     [self cy_viewWillAppear:animated];
 }
 
@@ -68,18 +68,36 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 - (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated {
     
+    [self cy_presentFromTopViewControllerWithAnimated:animated completion:nil];
+}
+
+- (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated completion:(void (^)(void))completion {
+    
     UIViewController *topVC = [UIViewController fetchTopViewController];
     if (topVC) {
         
         CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
         [self setCY_presentAnimatedTransition:animatedTransition];
-        [topVC presentViewController:self animated:animated completion:nil];
+        [topVC presentViewController:self animated:animated completion:completion];
+    } else {
+        
+        NSLog(@"cy_presentFromTopViewController try to present a nil controller");
     }
 }
 
 - (void)cy_dismissAllPresentedViewControllerWithAnimated:(BOOL)animated completion:(void (^)(void))completion {
     
-    if (self.presentedViewController == nil) return;
+    if (!self) {
+        
+        NSLog(@"cy_dismissAllPresentedViewControllerWithAnimated try to dismiss presentedController for nil");
+        return;
+    }
+    
+    if (self.presentedViewController == nil) {
+        
+        NSLog(@"cy_dismissAllPresentedViewControllerWithAnimated try to dismiss presentedController for %@,whose presentedController is nil",self);
+        return;
+    }
     
     if (animated) {
         
@@ -114,13 +132,13 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
             }];
         }];
     } else {
-
+        
         [self dismissViewControllerAnimated:NO completion:completion];
     }
 }
 
 + (UIViewController *)fetchTopViewController {
- 
+    
     UIViewController *resultVC;
     resultVC = [self topViewControllerOfViewController:[[UIApplication sharedApplication].keyWindow rootViewController]];
     
@@ -133,7 +151,7 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
         
         objc_setAssociatedObject(self, class_getName([sourceViewController class]),
                                  cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
- 
+        
         NSAssert((sourceViewController.navigationController != nil), @"fromViewController doesn't have a navigationController");
         
         sourceViewController.navigationController.delegate = self;
@@ -168,13 +186,25 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 
 + (UIViewController *)topViewControllerOfViewController:(UIViewController *)vc {
     
+    
     if ([vc isKindOfClass:[UINavigationController class]]) {
         
-        return [self topViewControllerOfViewController:[(UINavigationController *)vc topViewController]];
+        if (vc.presentedViewController) {
+            
+            return [self topViewControllerOfViewController:vc.presentedViewController];
+        } else {
+            
+            return [self topViewControllerOfViewController:[(UINavigationController *)vc topViewController]];
+        }
     } else if ([vc isKindOfClass:[UITabBarController class]]) {
         
-        return [self topViewControllerOfViewController:[(UITabBarController *)vc selectedViewController]];
-        
+        if (vc.presentedViewController) {
+            
+            return [self topViewControllerOfViewController:vc.presentedViewController];
+        } else {
+            
+            return [self topViewControllerOfViewController:[(UITabBarController *)vc selectedViewController]];
+        }
     } else if (vc.presentedViewController) {
         
         return [self topViewControllerOfViewController:vc.presentedViewController];
@@ -183,7 +213,7 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
         return vc;
     }
 }
-    
+
 #pragma - mark - setter
 
 - (void)setPushTransitionCustomed:(BOOL)transitionCustomed {
@@ -222,12 +252,12 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 }
 
 #pragma - mark - navigationControllerDelegate
- 
+
 - (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
                                    animationControllerForOperation:(UINavigationControllerOperation)operation
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC {
- 
+    
     if (operation == UINavigationControllerOperationPush) {
         
         return [toVC cy_pushAnimatedTransitionForSourceViewController:fromVC];
@@ -269,3 +299,4 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 }
 
 @end
+

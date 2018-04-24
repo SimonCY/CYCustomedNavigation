@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class CYForwardTransition;
- 
+
 @interface UIViewController (CYAnimatedTransition) <UINavigationControllerDelegate,UIViewControllerTransitioningDelegate>
 
 /**
@@ -32,6 +32,8 @@
 /** 从当前显示的页面，以present形式弹出 */
 - (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated;
 
+- (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated completion:(void (^)(void))completion;
+
 /** dismiss到present栈中指定的页面,一次性dimiss掉多个ViewController */
 - (void)cy_dismissAllPresentedViewControllerWithAnimated:(BOOL)animated completion:(void (^)(void))completion;
 
@@ -40,3 +42,4 @@
 
 
 @end
+
