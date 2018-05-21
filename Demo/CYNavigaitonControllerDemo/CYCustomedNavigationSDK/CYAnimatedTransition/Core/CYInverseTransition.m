@@ -44,6 +44,13 @@
 #pragma mark - pravite
 
 - (void)edgePanGesture:(UIScreenEdgePanGestureRecognizer *)recognizer {
+    
+    UIViewController *currentVC = [UIViewController fetchTopViewController];
+    
+    if (!currentVC.isPushTransitionCustomed && !currentVC.isPresentTransitionCustomed) {
+        
+        return;
+    }
  
     CGFloat progress = [recognizer translationInView:recognizer.view].x / (recognizer.view.bounds.size.width * 1.0);
     //limited between 0 ~ 1
@@ -52,8 +59,6 @@
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         
         _defaultPopPercentDriven = [[UIPercentDrivenInteractiveTransition alloc]init];
-        
-        UIViewController *currentVC = [UIViewController fetchTopViewController];
  
         if (currentVC.navigationController) {
             
