@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+CYCustomedNavigationBar.h"
 
-#define cy_NavbarHeight        (cy_isLandscape? 44:32)
-#define cy_customNavbarHeight  (cy_NavbarHeight + cy_StatusBarHeight)
+#define cy_IS_IPHONEPlUS ([UIScreen mainScreen].bounds.size.width == 414 || [UIScreen mainScreen].bounds.size.height == 414)
+
+#define cy_NavbarHeight        (cy_isLandscape? (cy_IS_IPHONEPlUS ? 44:32) : 44)
 #define cy_StatusBarHeight     [[UIApplication sharedApplication] statusBarFrame].size.height
+#define cy_customNavbarHeight  (cy_NavbarHeight + cy_StatusBarHeight)
 
 #define cy_ScreenWidth         [UIScreen mainScreen].bounds.size.width
 #define cy_ScreenHeight        [UIScreen mainScreen].bounds.size.height
-#define cy_isLandscape (cy_ScreenWidth < cy_ScreenHeight)
+#define cy_isLandscape         (cy_ScreenWidth > cy_ScreenHeight)
 
 @interface CYCustomedNavigationBar : UIView
 
