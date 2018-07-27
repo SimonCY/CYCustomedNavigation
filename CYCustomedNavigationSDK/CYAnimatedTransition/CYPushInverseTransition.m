@@ -24,6 +24,7 @@ static const CGFloat CYPushTransitionPushingViewOffsetX = -0.3;
     [super animateTransition];
  
     //Setup toVC before animating.
+    self.destinationViewController.view.frame = [self.transitionContext finalFrameForViewController:self.destinationViewController];
     self.destinationViewController.view.transform = CGAffineTransformMakeTranslation(self.containerView.bounds.size.width * CYPushTransitionPushingViewOffsetX, 0);
     
     //add shadow

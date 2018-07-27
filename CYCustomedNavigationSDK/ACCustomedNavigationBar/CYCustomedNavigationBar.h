@@ -11,7 +11,9 @@
 
 #define cy_IS_IPHONEPlUS ([UIScreen mainScreen].bounds.size.width == 414 || [UIScreen mainScreen].bounds.size.height == 414)
 
-#define cy_NavbarHeight        (cy_isLandscape? (cy_IS_IPHONEPlUS ? 44:32) : 44)
+#define cy_IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+#define cy_NavbarHeight        (cy_isLandscape? ((cy_IS_IPHONEPlUS || cy_IS_IPAD) ? 44:32) : 44)
 #define cy_StatusBarHeight     [[UIApplication sharedApplication] statusBarFrame].size.height
 #define cy_customNavbarHeight  (cy_NavbarHeight + cy_StatusBarHeight)
 
