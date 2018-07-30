@@ -16,8 +16,8 @@
 @property (weak, nonatomic) CYForwardTransition *forwardTransition;
 
 /** default is yes */
-@property (nonatomic, assign, getter=isLeftPanGustureEnable) BOOL leftPanGustureEnable;
+@property (nonatomic, assign, getter=isRightPanGustureEnable) BOOL rightPanGustureEnable;
 
-@property (strong, nonatomic, readonly) UIPercentDrivenInteractiveTransition *defaultPopPercentDriven;
+@property (strong, nonatomic, readonly) UIPercentDrivenInteractiveTransition *rightPanPopPercentDriven;
 
 @end

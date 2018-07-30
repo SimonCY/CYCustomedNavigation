@@ -12,9 +12,9 @@
 #import "CYInverseTransition.h"
 #import "CYPushTransition.h"
 
-static const char CYPresentAnimatedTransitionKey[30] = "CYPresentAnimatedTransitionKey";
-static const char CYIsPushTransitionCustomed[26] = "CYIsPushTransitionCustomed";
-static const char CYIsPresentTransitionCustomed[29] = "CYIsPresentTransitionCustomed";
+static const char CYPresentAnimatedTransitionKey[] = "CYPresentAnimatedTransitionKey";
+static const char CYIsPushTransitionCustomed[] = "CYIsPushTransitionCustomed";
+static const char CYIsPresentTransitionCustomed[] = "CYIsPresentTransitionCustomed";
 
 
 
@@ -35,7 +35,7 @@ static const char CYIsPresentTransitionCustomed[29] = "CYIsPresentTransitionCust
     } else {
         
     }
-    
+ 
     if (self.navigationController) {
         
         if (self.isPushTransitionCustomed) {
@@ -45,7 +45,7 @@ static const char CYIsPresentTransitionCustomed[29] = "CYIsPresentTransitionCust
             
         }
     }
-    
+
     [self cy_viewWillAppear:animated];
 }
 
@@ -67,37 +67,37 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 #pragma mark - public
 
 - (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated {
-    
-    [self cy_presentFromTopViewControllerWithAnimated:animated completion:nil];
+  
+  [self cy_presentFromTopViewControllerWithAnimated:animated completion:nil];
 }
 
 - (void)cy_presentFromTopViewControllerWithAnimated:(BOOL)animated completion:(void (^)(void))completion {
+  
+  UIViewController *topVC = [UIViewController fetchTopViewController];
+  if (topVC) {
     
-    UIViewController *topVC = [UIViewController fetchTopViewController];
-    if (topVC) {
-        
-        CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
-        [self setCY_presentAnimatedTransition:animatedTransition];
-        [topVC presentViewController:self animated:animated completion:completion];
-    } else {
-        
-        NSLog(@"cy_presentFromTopViewController try to present a nil controller");
-    }
+    CYPushTransition *animatedTransition = [[CYPushTransition alloc] init];
+    [self setCY_presentAnimatedTransition:animatedTransition];
+    [topVC presentViewController:self animated:animated completion:completion];
+  } else {
+    
+    NSLog(@"cy_presentFromTopViewController try to present a nil controller");
+  }
 }
 
 - (void)cy_dismissAllPresentedViewControllerWithAnimated:(BOOL)animated completion:(void (^)(void))completion {
+  
+  if (!self) {
     
-    if (!self) {
-        
-        NSLog(@"cy_dismissAllPresentedViewControllerWithAnimated try to dismiss presentedController for nil");
-        return;
-    }
+    NSLog(@"cy_dismissAllPresentedViewControllerWithAnimated try to dismiss presentedController for nil");
+    return;
+  }
     
-    if (self.presentedViewController == nil) {
-        
-        NSLog(@"cy_dismissAllPresentedViewControllerWithAnimated try to dismiss presentedController for %@,whose presentedController is nil",self);
-        return;
-    }
+  if (self.presentedViewController == nil) {
+    
+    NSLog(@"cy_dismissAllPresentedViewControllerWithAnimated try to dismiss presentedController for %@,whose presentedController is nil",self);
+    return;
+  }
     
     if (animated) {
         
@@ -116,8 +116,14 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
             
             NSTimeInterval duration = [CYPushTransition new].transitionDuration;
             self.view.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width * -0.3, 0);
-            [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                
+            
+            [UIView animateWithDuration:duration
+                                  delay:0
+                 usingSpringWithDamping:1
+                  initialSpringVelocity:0
+                                options:UIViewAnimationOptionCurveLinear
+                             animations:^{
+                                 
                 shadowView.alpha = 0.02;
                 self.view.transform = CGAffineTransformIdentity;
                 snapShotView.transform = CGAffineTransformMakeTranslation(snapShotView.frame.size.width, 0);
@@ -132,13 +138,13 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
             }];
         }];
     } else {
-        
+
         [self dismissViewControllerAnimated:NO completion:completion];
     }
 }
 
 + (UIViewController *)fetchTopViewController {
-    
+ 
     UIViewController *resultVC;
     resultVC = [self topViewControllerOfViewController:[[UIApplication sharedApplication].keyWindow rootViewController]];
     
@@ -151,7 +157,7 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
         
         objc_setAssociatedObject(self, class_getName([sourceViewController class]),
                                  cy_animatedTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
+ 
         NSAssert((sourceViewController.navigationController != nil), @"fromViewController doesn't have a navigationController");
         
         sourceViewController.navigationController.delegate = self;
@@ -185,35 +191,35 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 #pragma mark - pravite
 
 + (UIViewController *)topViewControllerOfViewController:(UIViewController *)vc {
+  
+ 
+  if ([vc isKindOfClass:[UINavigationController class]]) {
     
-    
-    if ([vc isKindOfClass:[UINavigationController class]]) {
-        
-        if (vc.presentedViewController) {
-            
-            return [self topViewControllerOfViewController:vc.presentedViewController];
-        } else {
-            
-            return [self topViewControllerOfViewController:[(UINavigationController *)vc topViewController]];
-        }
-    } else if ([vc isKindOfClass:[UITabBarController class]]) {
-        
-        if (vc.presentedViewController) {
-            
-            return [self topViewControllerOfViewController:vc.presentedViewController];
-        } else {
-            
-            return [self topViewControllerOfViewController:[(UITabBarController *)vc selectedViewController]];
-        }
-    } else if (vc.presentedViewController) {
-        
-        return [self topViewControllerOfViewController:vc.presentedViewController];
+    if (vc.presentedViewController) {
+      
+      return [self topViewControllerOfViewController:vc.presentedViewController];
     } else {
-        
-        return vc;
+      
+      return [self topViewControllerOfViewController:[(UINavigationController *)vc topViewController]];
     }
+  } else if ([vc isKindOfClass:[UITabBarController class]]) {
+    
+    if (vc.presentedViewController) {
+      
+      return [self topViewControllerOfViewController:vc.presentedViewController];
+    } else {
+      
+      return [self topViewControllerOfViewController:[(UITabBarController *)vc selectedViewController]];
+    }
+  } else if (vc.presentedViewController) {
+    
+    return [self topViewControllerOfViewController:vc.presentedViewController];
+  } else {
+    
+    return vc;
+  }
 }
-
+    
 #pragma - mark - setter
 
 - (void)setPushTransitionCustomed:(BOOL)transitionCustomed {
@@ -252,12 +258,12 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 }
 
 #pragma - mark - navigationControllerDelegate
-
+ 
 - (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
                                    animationControllerForOperation:(UINavigationControllerOperation)operation
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC {
-    
+ 
     if (operation == UINavigationControllerOperationPush) {
         
         return [toVC cy_pushAnimatedTransitionForSourceViewController:fromVC];
@@ -299,4 +305,3 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
 }
 
 @end
-

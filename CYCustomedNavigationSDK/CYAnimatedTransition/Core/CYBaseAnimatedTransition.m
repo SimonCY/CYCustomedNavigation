@@ -50,7 +50,9 @@
 #pragma mark - public
 
 - (void)transitionComplete {
+    
     [self.transitionContext completeTransition:!self.transitionContext.transitionWasCancelled];
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(CYAnimatedTransitionEndAnimatingWithAnimatedTransition:)]) {
         
         [self.delegate CYAnimatedTransitionEndAnimatingWithAnimatedTransition:self];
@@ -59,6 +61,7 @@
 
 - (void)animateTransition {
  
+    //动画的具体实现
 }
 
 #pragma mark - pravite

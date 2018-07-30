@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B62ACBE3206B4FC9002A35D2 /* CYCustomedNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B62ACBE1206B4FC8002A35D2 /* CYCustomedNavigationBar.m */; };
-		B6308FD91FD43A4C00836F1A /* CYMagicMoveInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */; };
-		B6308FDC1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */; };
-		B64749592069EA10002CB3E7 /* CYPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B64749582069EA10002CB3E7 /* CYPushTransition.m */; };
-		B647495C2069EA21002CB3E7 /* CYPushInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B647495B2069EA21002CB3E7 /* CYPushInverseTransition.m */; };
 		B678CD1D20529BF2004AC5A9 /* UIViewController+CYCustomedNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B678CD1B20529BF2004AC5A9 /* UIViewController+CYCustomedNavigationBar.m */; };
 		B678CD2020529DA3004AC5A9 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B678CD1E20529DA3004AC5A9 /* UIBarButtonItem+Extension.m */; };
 		B69278121FC2C157005E9126 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278111FC2C157005E9126 /* AppDelegate.m */; };
@@ -22,13 +18,17 @@
 		B69278201FC2C157005E9126 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B692781F1FC2C157005E9126 /* main.m */; };
 		B692782A1FC2C157005E9126 /* CYNavigaitonControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278291FC2C157005E9126 /* CYNavigaitonControllerDemoTests.m */; };
 		B69278351FC2C157005E9126 /* CYNavigaitonControllerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278341FC2C157005E9126 /* CYNavigaitonControllerDemoUITests.m */; };
-		B69278481FC2C35E005E9126 /* CYBaseAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69278471FC2C35E005E9126 /* CYBaseAnimatedTransition.m */; };
 		B692784C1FC2C519005E9126 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B692784B1FC2C519005E9126 /* DetailViewController.m */; };
-		B692784F1FC2E82D005E9126 /* CYMagicMoveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */; };
-		B69B5C831FE6A9B200C0CABC /* CYForwardTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */; };
-		B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */; };
 		B6A3E9792085DE1100A4D571 /* aViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A3E9782085DE1100A4D571 /* aViewController.m */; };
 		B6C8040C2079EEC600061FDE /* CYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C8040A2079EEC500061FDE /* CYNavigationController.m */; };
+		B6EA4378210EFB5F002274E4 /* CYBaseAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EA4368210EFB5F002274E4 /* CYBaseAnimatedTransition.m */; };
+		B6EA4379210EFB5F002274E4 /* CYForwardTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EA436A210EFB5F002274E4 /* CYForwardTransition.m */; };
+		B6EA437A210EFB5F002274E4 /* CYInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EA436C210EFB5F002274E4 /* CYInverseTransition.m */; };
+		B6EA437B210EFB5F002274E4 /* UIViewController+CYAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EA436E210EFB5F002274E4 /* UIViewController+CYAnimatedTransition.m */; };
+		B6EA437C210EFB5F002274E4 /* CYMagicMoveInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EA4371210EFB5F002274E4 /* CYMagicMoveInverseTransition.m */; };
+		B6EA437D210EFB5F002274E4 /* CYMagicMoveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EA4373210EFB5F002274E4 /* CYMagicMoveTransition.m */; };
+		B6EA437E210EFB5F002274E4 /* CYPushInverseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EA4375210EFB5F002274E4 /* CYPushInverseTransition.m */; };
+		B6EA437F210EFB5F002274E4 /* CYPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EA4377210EFB5F002274E4 /* CYPushTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,14 +51,6 @@
 /* Begin PBXFileReference section */
 		B62ACBE1206B4FC8002A35D2 /* CYCustomedNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYCustomedNavigationBar.m; sourceTree = "<group>"; };
 		B62ACBE2206B4FC9002A35D2 /* CYCustomedNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYCustomedNavigationBar.h; sourceTree = "<group>"; };
-		B6308FD71FD43A4C00836F1A /* CYMagicMoveInverseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYMagicMoveInverseTransition.h; sourceTree = "<group>"; };
-		B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYMagicMoveInverseTransition.m; sourceTree = "<group>"; };
-		B6308FDA1FD597F500836F1A /* UIViewController+CYAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYAnimatedTransition.h"; sourceTree = "<group>"; };
-		B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYAnimatedTransition.m"; sourceTree = "<group>"; };
-		B64749572069EA10002CB3E7 /* CYPushTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYPushTransition.h; sourceTree = "<group>"; };
-		B64749582069EA10002CB3E7 /* CYPushTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYPushTransition.m; sourceTree = "<group>"; };
-		B647495A2069EA21002CB3E7 /* CYPushInverseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYPushInverseTransition.h; sourceTree = "<group>"; };
-		B647495B2069EA21002CB3E7 /* CYPushInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYPushInverseTransition.m; sourceTree = "<group>"; };
 		B678CD1A20529BF2004AC5A9 /* UIViewController+CYCustomedNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYCustomedNavigationBar.h"; sourceTree = "<group>"; };
 		B678CD1B20529BF2004AC5A9 /* UIViewController+CYCustomedNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYCustomedNavigationBar.m"; sourceTree = "<group>"; };
 		B678CD1E20529DA3004AC5A9 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
@@ -79,21 +71,29 @@
 		B69278301FC2C157005E9126 /* CYNavigaitonControllerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CYNavigaitonControllerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69278341FC2C157005E9126 /* CYNavigaitonControllerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYNavigaitonControllerDemoUITests.m; sourceTree = "<group>"; };
 		B69278361FC2C157005E9126 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B69278461FC2C35E005E9126 /* CYBaseAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYBaseAnimatedTransition.h; sourceTree = "<group>"; };
-		B69278471FC2C35E005E9126 /* CYBaseAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYBaseAnimatedTransition.m; sourceTree = "<group>"; };
 		B692784A1FC2C519005E9126 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		B692784B1FC2C519005E9126 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		B692784D1FC2E82D005E9126 /* CYMagicMoveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYMagicMoveTransition.h; sourceTree = "<group>"; };
-		B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYMagicMoveTransition.m; sourceTree = "<group>"; };
-		B69B5C801FE6A99D00C0CABC /* CYAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYAnimatedTransition.h; sourceTree = "<group>"; };
-		B69B5C811FE6A9B200C0CABC /* CYForwardTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYForwardTransition.h; sourceTree = "<group>"; };
-		B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYForwardTransition.m; sourceTree = "<group>"; };
-		B69B5C841FE6A9BE00C0CABC /* CYInverseTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYInverseTransition.h; sourceTree = "<group>"; };
-		B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYInverseTransition.m; sourceTree = "<group>"; };
 		B6A3E9772085DE1100A4D571 /* aViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aViewController.h; sourceTree = "<group>"; };
 		B6A3E9782085DE1100A4D571 /* aViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aViewController.m; sourceTree = "<group>"; };
 		B6C8040A2079EEC500061FDE /* CYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYNavigationController.m; sourceTree = "<group>"; };
 		B6C8040B2079EEC500061FDE /* CYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNavigationController.h; sourceTree = "<group>"; };
+		B6EA4367210EFB5F002274E4 /* CYBaseAnimatedTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYBaseAnimatedTransition.h; sourceTree = "<group>"; };
+		B6EA4368210EFB5F002274E4 /* CYBaseAnimatedTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYBaseAnimatedTransition.m; sourceTree = "<group>"; };
+		B6EA4369210EFB5F002274E4 /* CYForwardTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYForwardTransition.h; sourceTree = "<group>"; };
+		B6EA436A210EFB5F002274E4 /* CYForwardTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYForwardTransition.m; sourceTree = "<group>"; };
+		B6EA436B210EFB5F002274E4 /* CYInverseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYInverseTransition.h; sourceTree = "<group>"; };
+		B6EA436C210EFB5F002274E4 /* CYInverseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYInverseTransition.m; sourceTree = "<group>"; };
+		B6EA436D210EFB5F002274E4 /* UIViewController+CYAnimatedTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CYAnimatedTransition.h"; sourceTree = "<group>"; };
+		B6EA436E210EFB5F002274E4 /* UIViewController+CYAnimatedTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CYAnimatedTransition.m"; sourceTree = "<group>"; };
+		B6EA436F210EFB5F002274E4 /* CYAnimatedTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAnimatedTransition.h; sourceTree = "<group>"; };
+		B6EA4370210EFB5F002274E4 /* CYMagicMoveInverseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMagicMoveInverseTransition.h; sourceTree = "<group>"; };
+		B6EA4371210EFB5F002274E4 /* CYMagicMoveInverseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMagicMoveInverseTransition.m; sourceTree = "<group>"; };
+		B6EA4372210EFB5F002274E4 /* CYMagicMoveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMagicMoveTransition.h; sourceTree = "<group>"; };
+		B6EA4373210EFB5F002274E4 /* CYMagicMoveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMagicMoveTransition.m; sourceTree = "<group>"; };
+		B6EA4374210EFB5F002274E4 /* CYPushInverseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPushInverseTransition.h; sourceTree = "<group>"; };
+		B6EA4375210EFB5F002274E4 /* CYPushInverseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPushInverseTransition.m; sourceTree = "<group>"; };
+		B6EA4376210EFB5F002274E4 /* CYPushTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPushTransition.h; sourceTree = "<group>"; };
+		B6EA4377210EFB5F002274E4 /* CYPushTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPushTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,40 +198,40 @@
 		B69278421FC2C28D005E9126 /* CYCustomedNavigationSDK */ = {
 			isa = PBXGroup;
 			children = (
+				B6EA4365210EFB5F002274E4 /* CYAnimatedTransition */,
 				B678CD1720529BF2004AC5A9 /* ACCustomedNavigationBar */,
-				B69278491FC2C361005E9126 /* CYAnimatedTransition */,
 			);
 			path = CYCustomedNavigationSDK;
 			sourceTree = "<group>";
 		};
-		B69278491FC2C361005E9126 /* CYAnimatedTransition */ = {
+		B6EA4365210EFB5F002274E4 /* CYAnimatedTransition */ = {
 			isa = PBXGroup;
 			children = (
-				B69DD0041FE7B5E60000BAA3 /* Core */,
-				B69B5C801FE6A99D00C0CABC /* CYAnimatedTransition.h */,
-				B692784D1FC2E82D005E9126 /* CYMagicMoveTransition.h */,
-				B692784E1FC2E82D005E9126 /* CYMagicMoveTransition.m */,
-				B6308FD71FD43A4C00836F1A /* CYMagicMoveInverseTransition.h */,
-				B6308FD81FD43A4C00836F1A /* CYMagicMoveInverseTransition.m */,
-				B64749572069EA10002CB3E7 /* CYPushTransition.h */,
-				B64749582069EA10002CB3E7 /* CYPushTransition.m */,
-				B647495A2069EA21002CB3E7 /* CYPushInverseTransition.h */,
-				B647495B2069EA21002CB3E7 /* CYPushInverseTransition.m */,
+				B6EA4366210EFB5F002274E4 /* Core */,
+				B6EA436F210EFB5F002274E4 /* CYAnimatedTransition.h */,
+				B6EA4370210EFB5F002274E4 /* CYMagicMoveInverseTransition.h */,
+				B6EA4371210EFB5F002274E4 /* CYMagicMoveInverseTransition.m */,
+				B6EA4372210EFB5F002274E4 /* CYMagicMoveTransition.h */,
+				B6EA4373210EFB5F002274E4 /* CYMagicMoveTransition.m */,
+				B6EA4374210EFB5F002274E4 /* CYPushInverseTransition.h */,
+				B6EA4375210EFB5F002274E4 /* CYPushInverseTransition.m */,
+				B6EA4376210EFB5F002274E4 /* CYPushTransition.h */,
+				B6EA4377210EFB5F002274E4 /* CYPushTransition.m */,
 			);
 			path = CYAnimatedTransition;
 			sourceTree = "<group>";
 		};
-		B69DD0041FE7B5E60000BAA3 /* Core */ = {
+		B6EA4366210EFB5F002274E4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B69278461FC2C35E005E9126 /* CYBaseAnimatedTransition.h */,
-				B69278471FC2C35E005E9126 /* CYBaseAnimatedTransition.m */,
-				B69B5C811FE6A9B200C0CABC /* CYForwardTransition.h */,
-				B69B5C821FE6A9B200C0CABC /* CYForwardTransition.m */,
-				B69B5C841FE6A9BE00C0CABC /* CYInverseTransition.h */,
-				B69B5C851FE6A9BE00C0CABC /* CYInverseTransition.m */,
-				B6308FDA1FD597F500836F1A /* UIViewController+CYAnimatedTransition.h */,
-				B6308FDB1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m */,
+				B6EA4367210EFB5F002274E4 /* CYBaseAnimatedTransition.h */,
+				B6EA4368210EFB5F002274E4 /* CYBaseAnimatedTransition.m */,
+				B6EA4369210EFB5F002274E4 /* CYForwardTransition.h */,
+				B6EA436A210EFB5F002274E4 /* CYForwardTransition.m */,
+				B6EA436B210EFB5F002274E4 /* CYInverseTransition.h */,
+				B6EA436C210EFB5F002274E4 /* CYInverseTransition.m */,
+				B6EA436D210EFB5F002274E4 /* UIViewController+CYAnimatedTransition.h */,
+				B6EA436E210EFB5F002274E4 /* UIViewController+CYAnimatedTransition.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -369,23 +369,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B69B5C831FE6A9B200C0CABC /* CYForwardTransition.m in Sources */,
 				B69278151FC2C157005E9126 /* ListViewController.m in Sources */,
 				B6C8040C2079EEC600061FDE /* CYNavigationController.m in Sources */,
-				B64749592069EA10002CB3E7 /* CYPushTransition.m in Sources */,
-				B69278481FC2C35E005E9126 /* CYBaseAnimatedTransition.m in Sources */,
 				B6A3E9792085DE1100A4D571 /* aViewController.m in Sources */,
-				B69B5C861FE6A9BE00C0CABC /* CYInverseTransition.m in Sources */,
 				B62ACBE3206B4FC9002A35D2 /* CYCustomedNavigationBar.m in Sources */,
+				B6EA4379210EFB5F002274E4 /* CYForwardTransition.m in Sources */,
 				B69278201FC2C157005E9126 /* main.m in Sources */,
-				B692784F1FC2E82D005E9126 /* CYMagicMoveTransition.m in Sources */,
-				B6308FD91FD43A4C00836F1A /* CYMagicMoveInverseTransition.m in Sources */,
 				B678CD1D20529BF2004AC5A9 /* UIViewController+CYCustomedNavigationBar.m in Sources */,
+				B6EA437E210EFB5F002274E4 /* CYPushInverseTransition.m in Sources */,
+				B6EA437F210EFB5F002274E4 /* CYPushTransition.m in Sources */,
+				B6EA437B210EFB5F002274E4 /* UIViewController+CYAnimatedTransition.m in Sources */,
+				B6EA437D210EFB5F002274E4 /* CYMagicMoveTransition.m in Sources */,
+				B6EA4378210EFB5F002274E4 /* CYBaseAnimatedTransition.m in Sources */,
 				B678CD2020529DA3004AC5A9 /* UIBarButtonItem+Extension.m in Sources */,
+				B6EA437C210EFB5F002274E4 /* CYMagicMoveInverseTransition.m in Sources */,
 				B69278121FC2C157005E9126 /* AppDelegate.m in Sources */,
-				B647495C2069EA21002CB3E7 /* CYPushInverseTransition.m in Sources */,
-				B6308FDC1FD597F500836F1A /* UIViewController+CYAnimatedTransition.m in Sources */,
 				B692784C1FC2C519005E9126 /* DetailViewController.m in Sources */,
+				B6EA437A210EFB5F002274E4 /* CYInverseTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

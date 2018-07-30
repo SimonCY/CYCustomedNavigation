@@ -28,11 +28,11 @@
     
     if (self = [super init]) {
         
-        self.leftPanGustureEnable = YES;
+        self.rightPanGustureEnable = YES;
         
-        //setup defaultPopPercentDriven
+        //setup gusture
         _defaultPopGustureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(edgePanGesture:)];
-        _defaultPopGustureRecognizer.enabled = self.isLeftPanGustureEnable;
+        _defaultPopGustureRecognizer.enabled = self.isRightPanGustureEnable;
         
         //设置从什么边界滑入
         ((UIScreenEdgePanGestureRecognizer *)_defaultPopGustureRecognizer).edges = UIRectEdgeLeft;
@@ -44,21 +44,22 @@
 #pragma mark - pravite
 
 - (void)edgePanGesture:(UIScreenEdgePanGestureRecognizer *)recognizer {
+  
+  UIViewController *currentVC = [UIViewController fetchTopViewController];
+  
+  if (!currentVC.isPushTransitionCustomed && !currentVC.isPresentTransitionCustomed) {
     
-    UIViewController *currentVC = [UIViewController fetchTopViewController];
-    
-    if (!currentVC.isPushTransitionCustomed && !currentVC.isPresentTransitionCustomed) {
-        
-        return;
-    }
+    return;
+  }
  
     CGFloat progress = [recognizer translationInView:recognizer.view].x / (recognizer.view.bounds.size.width * 1.0);
     //limited between 0 ~ 1
     progress = MIN(1.0, MAX(0.0, progress));
-    
+  
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        
-        _defaultPopPercentDriven = [[UIPercentDrivenInteractiveTransition alloc]init];
+      
+        _rightPanPopPercentDriven = [[UIPercentDrivenInteractiveTransition alloc]init];
+      
  
         if (currentVC.navigationController) {
             
@@ -69,28 +70,28 @@
         }
     } else if (recognizer.state == UIGestureRecognizerStateChanged) {
         
-        [_defaultPopPercentDriven updateInteractiveTransition:progress];
+        [_rightPanPopPercentDriven updateInteractiveTransition:progress];
     } else if (recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded) {
- 
-        _defaultPopPercentDriven.completionSpeed = 0.3;
 
+      _rightPanPopPercentDriven.completionSpeed = 0.3;
+ 
         if (progress > 0.5) {
             
-            [_defaultPopPercentDriven finishInteractiveTransition];
+            [_rightPanPopPercentDriven finishInteractiveTransition];
         } else {
             
-            [_defaultPopPercentDriven cancelInteractiveTransition];
+            [_rightPanPopPercentDriven cancelInteractiveTransition];
         }
-        _defaultPopPercentDriven = nil;
+        _rightPanPopPercentDriven = nil;
     }
 }
 
 #pragma mark - setter
 
-- (void)setLeftPanGustureEnable:(BOOL)leftPanGustureEnable {
-    _leftPanGustureEnable = leftPanGustureEnable;
+- (void)setRightPanGustureEnable:(BOOL)rightPanGustureEnable {
+    _rightPanGustureEnable = rightPanGustureEnable;
     
-    self.defaultPopGustureRecognizer.enabled = _leftPanGustureEnable;
+    self.defaultPopGustureRecognizer.enabled = _rightPanGustureEnable;
 }
 
 #pragma mark - getter
@@ -107,9 +108,9 @@
 
 - (UIPercentDrivenInteractiveTransition *)percentDrivenTransition {
     
-    if (self.isLeftPanGustureEnable) {
+    if (self.isRightPanGustureEnable) {
         
-        return self.defaultPopPercentDriven;
+        return self.rightPanPopPercentDriven;
     } else {
         
         if (self.destinationViewDataSource && [self.destinationViewDataSource respondsToSelector:@selector(percentDrivenForCYInverseTransition:)]) {
