@@ -4,12 +4,16 @@
 # What is CYNavigationController ?
 
 
-![License MIT](https://img.shields.io/badge/master-v0.0.1-yellowgreen.svg)&nbsp; 
-![License MIT](https://img.shields.io/badge/pod-v0.0.1-yellow.svg)&nbsp; 
+![License MIT](https://img.shields.io/badge/master-v0.0.2-yellowgreen.svg)&nbsp; 
+![License MIT](https://img.shields.io/badge/pod-v0.0.2-yellow.svg)&nbsp; 
 ![License MIT](https://img.shields.io/badge/support-iOS%208%2B-orange.svg)&nbsp; 
 ![License MIT](https://img.shields.io/badge/support-iPhoneX-ff69b4.svg)&nbsp; 
+![License MIT](https://img.shields.io/badge/support-iPad-ff69b4.svg)&nbsp; 
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)&nbsp; 
 ![License MIT](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)&nbsp; 
+
+&emsp;&emsp;CYNavigationController能够使每个ViewController拥有一个独立的NavigationBar，且包含系统NavigationBar的全部功能，并且能够让使用者很轻易的进行转场动画的自定义。现已支持iPad和横竖屏切换场景下的应用。
+
 
 ## 应用场景
 
