@@ -104,14 +104,14 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
         //when you disimss more than two ViewController with animated YES ,top presentedViewController will be dismissed with animation, others will be dismissed without animation
         UIView *snapShotView = [[UIApplication sharedApplication].keyWindow snapshotViewAfterScreenUpdates:NO];
         snapShotView.frame = [[UIScreen mainScreen] bounds];
-        
-        UIView *shadowView = [[UIView alloc] init];
-        shadowView.backgroundColor = [UIColor blackColor];
-        shadowView.alpha = 0.4;
-        shadowView.frame = snapShotView.frame;
-        
-        [[UIApplication sharedApplication].keyWindow addSubview:shadowView];
         [[UIApplication sharedApplication].keyWindow addSubview:snapShotView];
+  
+        //add shadow
+        snapShotView.layer.shadowOffset = CGSizeMake(-5, 0);
+        snapShotView.layer.shadowColor = [UIColor blackColor].CGColor;
+        snapShotView.layer.shadowOpacity =  0.1;
+        snapShotView.layer.shadowRadius = 5;
+        
         [self dismissViewControllerAnimated:NO completion:^{
             
             NSTimeInterval duration = [CYPushTransition new].transitionDuration;
@@ -124,12 +124,11 @@ static void cy_exchangeInstanceMethod(Class class, SEL originalSelector, SEL new
                                 options:UIViewAnimationOptionCurveLinear
                              animations:^{
                                  
-                shadowView.alpha = 0.02;
+                
                 self.view.transform = CGAffineTransformIdentity;
                 snapShotView.transform = CGAffineTransformMakeTranslation(snapShotView.frame.size.width, 0);
             } completion:^(BOOL finished) {
                 
-                [shadowView removeFromSuperview];
                 [snapShotView removeFromSuperview];
                 
                 if (completion) {

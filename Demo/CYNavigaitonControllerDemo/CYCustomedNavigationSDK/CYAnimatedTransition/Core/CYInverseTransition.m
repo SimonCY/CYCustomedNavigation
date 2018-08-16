@@ -47,6 +47,11 @@
   
   UIViewController *currentVC = [UIViewController fetchTopViewController];
   
+  if (![currentVC cy_PresentAnimatedTransition].inverseTransition.rightPanGustureEnable) {
+        
+        return;
+  }
+    
   if (!currentVC.isPushTransitionCustomed && !currentVC.isPresentTransitionCustomed) {
     
     return;
