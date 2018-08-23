@@ -11,9 +11,19 @@
 #import "CYBaseAnimatedTransition.h"
 #import "UIViewController+CYAnimatedTransition.h"
 
+@interface CYScreenPanGestureRecognizer : UIScreenEdgePanGestureRecognizer
+
+@end
+@implementation CYScreenPanGestureRecognizer
+
+@end
+
+
 @interface CYInverseTransition ()
 
-@property (strong, nonatomic) UIScreenEdgePanGestureRecognizer *defaultPopGustureRecognizer;
+@property (strong, nonatomic) CYScreenPanGestureRecognizer *defaultPopGustureRecognizer;
+
+@property (nonatomic, weak) CYScreenPanGestureRecognizer *previousGustureRecognizer;
 
 @end
 
@@ -22,6 +32,11 @@
 - (void)dealloc {
     
     [[UIApplication sharedApplication].keyWindow removeGestureRecognizer:_defaultPopGustureRecognizer];
+    
+    if (_previousGustureRecognizer) {
+        
+        [[UIApplication sharedApplication].keyWindow addGestureRecognizer:_previousGustureRecognizer];
+    }
 }
 
 - (instancetype)init {
@@ -31,41 +46,49 @@
         self.rightPanGustureEnable = YES;
         
         //setup gusture
-        _defaultPopGustureRecognizer = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(edgePanGesture:)];
-        _defaultPopGustureRecognizer.enabled = self.isRightPanGustureEnable;
-        
+        _defaultPopGustureRecognizer = [[CYScreenPanGestureRecognizer alloc]initWithTarget:self action:@selector(edgePanGesture:)];
         //设置从什么边界滑入
         ((UIScreenEdgePanGestureRecognizer *)_defaultPopGustureRecognizer).edges = UIRectEdgeLeft;
+        _defaultPopGustureRecognizer.enabled = self.isRightPanGustureEnable;
+        
+        for (UIGestureRecognizer *recognizer in [UIApplication sharedApplication].keyWindow.gestureRecognizers) {
+            
+            if ([recognizer isMemberOfClass:[CYScreenPanGestureRecognizer class]]) {
+                
+                self.previousGustureRecognizer = (CYScreenPanGestureRecognizer *)recognizer;
+                [[UIApplication sharedApplication].keyWindow removeGestureRecognizer:recognizer];
+            }
+        }
         [[UIApplication sharedApplication].keyWindow addGestureRecognizer:_defaultPopGustureRecognizer];
     }
     return self;
 }
- 
+
 #pragma mark - pravite
 
 - (void)edgePanGesture:(UIScreenEdgePanGestureRecognizer *)recognizer {
-  
-  UIViewController *currentVC = [UIViewController fetchTopViewController];
-  
-  if (![currentVC cy_PresentAnimatedTransition].inverseTransition.rightPanGustureEnable) {
+    
+    UIViewController *currentVC = [UIViewController fetchTopViewController];
+    
+    if (![currentVC cy_PresentAnimatedTransition].inverseTransition.rightPanGustureEnable) {
         
         return;
-  }
+    }
     
-  if (!currentVC.isPushTransitionCustomed && !currentVC.isPresentTransitionCustomed) {
+    if (!currentVC.isPushTransitionCustomed && !currentVC.isPresentTransitionCustomed) {
+        
+        return;
+    }
     
-    return;
-  }
- 
     CGFloat progress = [recognizer translationInView:recognizer.view].x / (recognizer.view.bounds.size.width * 1.0);
     //limited between 0 ~ 1
     progress = MIN(1.0, MAX(0.0, progress));
-  
+    
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-      
+        
         _rightPanPopPercentDriven = [[UIPercentDrivenInteractiveTransition alloc]init];
-      
- 
+        
+        
         if (currentVC.navigationController) {
             
             [currentVC.navigationController popViewControllerAnimated:YES];
@@ -77,9 +100,9 @@
         
         [_rightPanPopPercentDriven updateInteractiveTransition:progress];
     } else if (recognizer.state == UIGestureRecognizerStateCancelled || recognizer.state == UIGestureRecognizerStateEnded) {
-
-      _rightPanPopPercentDriven.completionSpeed = 0.3;
- 
+        
+        _rightPanPopPercentDriven.completionSpeed = 0.3;
+        
         if (progress > 0.5) {
             
             [_rightPanPopPercentDriven finishInteractiveTransition];
@@ -102,12 +125,12 @@
 #pragma mark - getter
 
 - (UIView *)sourceView {
-
+    
     return [self.destinationViewDataSource destinationViewForCYAnimatedTransition:self];
 }
 
 - (UIView *)destinationView {
-
+    
     return [self.sourceViewDataSource sourceViewForCYAnimatedTransition:self];
 }
 
@@ -126,7 +149,7 @@
             return nil;
         }
     }
-
+    
 }
 
 @end
